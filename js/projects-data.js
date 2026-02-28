@@ -158,6 +158,6 @@ const projectsData = [
             'Loading states and smooth animations'
         ],
         technologies: ['Flutter 3.x', 'Dart', 'OpenWeather API', 'HTTP Package', 'MVVM Architecture'],
-        github: 'https://github.com/princepro-cr/SkyScanModern'
+        github: 'https://github.com/princepro-cr/SkyScan'
     }
 ];
