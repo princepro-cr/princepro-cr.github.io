@@ -385,9 +385,9 @@ function getScreenshotCount(folder) {
         'leavepulse': 3,
         'library': 3,
         'lottery': 4,
-        'projectx': 4,
+        'projectx': 3,
         'semosafm': 3,
-        'wordpress': 2
+        'wordpress': 1
     };
     return counts[folder] || 3;
 }
