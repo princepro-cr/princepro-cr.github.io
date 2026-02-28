@@ -1,25 +1,24 @@
+
 // ============================================
-// PROJECT DATA CONFIGURATION
+// Update Copyright Year
 // ============================================
-// Add your project screenshots to the /images/projects/ folder
-// Update the data below with your project information
+function updateCopyrightYear() {
+    if (currentYearSpan) {
+        currentYearSpan.textContent = new Date().getFullYear();
+    }
+}// ============================================
+// PROJECT DATA - All project information
+// ============================================
 
 const projectsData = [
     {
-        id: 'projectx',
+        id: 1,
         title: 'ProjectX - Student & HR Portal',
         category: 'Full-Stack System',
-        description: 'A comprehensive digital management platform combining mobile and web solutions for academic and HR operations.',
-        screenshots: [
-            'images/projects/projectx/screenshot1.jpg',
-            'images/projects/projectx/screenshot2.jpg',
-            'images/projects/projectx/screenshot3.jpg',
-            'images/projects/projectx/screenshot4.jpg'
-        ],
-        purpose: 'Designed and developed a full-stack digital management system to centralize student and HR operations. The system consists of a Flutter mobile application for students and an ASP.NET Core web portal for administrators, providing a unified platform for academic and administrative management.',
-        problem: 'Educational institutions struggled with fragmented systems for managing student records, HR data, and academic information. Manual processes led to data inconsistencies, delayed processing, and poor user experience. There was no integrated solution connecting students, administrators, and HR departments.',
-        impact: 'Reduced manual paperwork by 75%, improved data accuracy to 98%, and decreased processing time for student requests by 60%. The centralized platform eliminated data silos, enabling real-time updates and better decision-making across departments.',
-        beneficiaries: 'Students, HR administrators, academic staff, and university management. Over 500+ students and 50+ staff members actively use the platform daily for registration, profile management, record keeping, and administrative tasks.',
+        purpose: 'Designed and developed a full-stack digital management system to centralize student and HR operations. The system consists of a Flutter mobile application for students and an ASP.NET Core web portal for administrators.',
+        problem: 'Educational institutions struggled with fragmented systems for managing student records, HR data, and academic information. Manual processes led to data inconsistencies and delayed processing.',
+        impact: 'Reduced manual paperwork by 75%, improved data accuracy to 98%, and decreased processing time for student requests by 60%.',
+        beneficiaries: '500+ students and 50+ staff members use the platform daily for registration, profile management, and administrative tasks.',
         features: [
             'Student self-service portal for registration and profile management',
             'Secure authentication with role-based access control',
@@ -34,19 +33,13 @@ const projectsData = [
         github: 'https://github.com/princepro-cr/PortalX_Web_Admin_Panel'
     },
     {
-        id: 'library',
+        id: 2,
         title: 'Library Management System',
         category: 'Web Application',
-        description: 'Enterprise-grade system for automating library operations including inventory, borrowing, and purchasing.',
-        screenshots: [
-            'images/projects/library/screenshot1.jpg',
-            'images/projects/library/screenshot2.jpg',
-            'images/projects/library/screenshot3.jpg'
-        ],
-        purpose: 'Built to automate and streamline all library operations for educational institutions. The system manages the complete book lifecycle from acquisition to circulation, providing librarians and members with an efficient digital platform.',
-        problem: 'Traditional paper-based library systems were prone to errors, book losses, and inefficient tracking. Librarians spent excessive time on manual record-keeping, fine calculations, and report generation. Members had no way to check book availability online.',
-        impact: 'Reduced book loss by 90%, decreased checkout time from 5 minutes to 30 seconds, and eliminated fine calculation errors. The system processes 200+ transactions daily and manages an inventory of 10,000+ books with 99.5% accuracy.',
-        beneficiaries: 'Librarians, library administrators, students, faculty members, and researchers. Serves 2,000+ active members across multiple library branches with seamless book tracking and borrowing.',
+        purpose: 'Built to automate and streamline all library operations for educational institutions. The system manages the complete book lifecycle from acquisition to circulation.',
+        problem: 'Traditional paper-based library systems were prone to errors, book losses, and inefficient tracking. Members had no way to check book availability online.',
+        impact: 'Reduced book loss by 90%, decreased checkout time from 5 minutes to 30 seconds, and eliminated fine calculation errors.',
+        beneficiaries: 'Serves 2,000+ active members across multiple library branches with seamless book tracking and borrowing.',
         features: [
             'Real-time book availability tracking and search',
             'Automated borrowing and return processing',
@@ -58,23 +51,17 @@ const projectsData = [
             'Barcode scanning integration',
             'Inventory management with analytics'
         ],
-        technologies: ['ASP.NET Core 8 MVC', 'C#', 'Firebase', 'Entity Framework Core', 'Bootstrap 5', 'JavaScript', 'RESTful APIs'],
+        technologies: ['ASP.NET Core 8 MVC', 'C#', 'Firebase', 'Entity Framework Core', 'Bootstrap 5', 'JavaScript'],
         github: 'https://github.com/princepro-cr/Libreria'
     },
     {
-        id: 'semosafm',
+        id: 3,
         title: 'SemosaFM - Radio Streaming App',
         category: 'Mobile Application',
-        description: 'Feature-rich Flutter application for streaming, recording, and managing South African radio content.',
-        screenshots: [
-            'images/projects/semosafm/screenshot1.jpg',
-            'images/projects/semosafm/screenshot2.jpg',
-            'images/projects/semosafm/screenshot3.jpg'
-        ],
-        purpose: 'Developed to provide South African listeners with easy access to local radio content. The app enables users to stream, record, and save their favorite shows, bringing traditional radio into the digital age with modern mobile features.',
-        problem: 'Listeners had limited access to local radio stations outside of traditional broadcast areas. There was no convenient way to record shows for later listening, and users missed their favorite programs due to scheduling conflicts.',
-        impact: 'Reached 5,000+ downloads in the first 6 months with 40+ radio stations available. Users save an average of 10 hours of content weekly, with 85% daily active usage rate. Expanded radio accessibility beyond geographical limitations.',
-        beneficiaries: 'Radio listeners, commuters, radio enthusiasts, and fans of South African content. Particularly helpful for users who want offline listening capabilities and the ability to time-shift their radio consumption.',
+        purpose: 'Developed to provide South African listeners with easy access to local radio content. The app enables users to stream, record, and save their favorite shows.',
+        problem: 'Listeners had limited access to local radio stations outside of traditional broadcast areas. There was no convenient way to record shows for later listening.',
+        impact: 'Reached 5,000+ downloads in the first 6 months with 40+ radio stations available and 85% daily active usage rate.',
+        beneficiaries: 'Radio listeners, commuters, and fans of South African content who want offline listening capabilities.',
         features: [
             'Stream 40+ South African radio stations',
             'Record live radio broadcasts',
@@ -83,26 +70,19 @@ const projectsData = [
             'Sleep timer functionality',
             'Favorite stations management',
             'Recent listening history',
-            'Low data consumption mode',
-            'Intuitive, user-friendly interface'
+            'Low data consumption mode'
         ],
-        technologies: ['Flutter 3.x', 'Dart', 'Firebase', 'Audio Service Plugin', 'Local Storage', 'Streaming APIs'],
+        technologies: ['Flutter 3.x', 'Dart', 'Firebase', 'Audio Service Plugin', 'Local Storage'],
         github: 'https://github.com/princepro-cr/SemosaFM'
     },
     {
-        id: 'leavepulse',
+        id: 4,
         title: 'LeavePulse - Leave Management',
         category: 'Web Application',
-        description: 'Automated employee leave management system with multi-level approval workflows.',
-        screenshots: [
-            'images/projects/leavepulse/screenshot1.jpg',
-            'images/projects/leavepulse/screenshot2.jpg',
-            'images/projects/leavepulse/screenshot3.jpg'
-        ],
-        purpose: 'Created to automate and streamline the entire employee leave management process. The system handles everything from leave applications to approvals, tracking, and reporting, eliminating manual processes and paperwork.',
-        problem: 'HR departments struggled with paper-based leave systems that caused delays, errors, and lack of transparency. Employees had no visibility into their leave balances, and managers could not easily view team availability for planning purposes.',
-        impact: 'Reduced leave approval time from 3-5 days to 24 hours, eliminated 100% of paperwork, and improved leave balance accuracy to 100%. Managers report 40% better resource planning with real-time team availability visibility.',
-        beneficiaries: 'Employees, managers, HR administrators, and department heads across the organization. Actively used by 200+ employees with 500+ leave requests processed monthly.',
+        purpose: 'Created to automate and streamline the entire employee leave management process from applications to approvals and tracking.',
+        problem: 'HR departments struggled with paper-based leave systems causing delays, errors, and lack of transparency.',
+        impact: 'Reduced leave approval time from 3-5 days to 24 hours, eliminated 100% of paperwork, and improved leave balance accuracy.',
+        beneficiaries: '200+ employees and HR administrators with 500+ leave requests processed monthly.',
         features: [
             'Employee self-service leave application portal',
             'Document upload for supporting evidence',
@@ -112,27 +92,19 @@ const projectsData = [
             'Manager dashboard for team visibility',
             'Leave calendar and planning tools',
             'Comprehensive reports and analytics',
-            'Leave policy configuration',
-            'Leave accrual automation'
+            'Leave policy configuration'
         ],
-        technologies: ['ASP.NET Core 8', 'C#', 'Firebase', 'Supabase', 'Entity Framework', 'Material-UI', 'Email Service'],
+        technologies: ['ASP.NET Core 8', 'C#', 'Firebase', 'Supabase', 'Entity Framework', 'Material-UI'],
         github: 'https://github.com/princepro-cr/LeavePulse'
     },
     {
-        id: 'lottery',
+        id: 5,
         title: 'Lottery Mobile Application',
         category: 'Mobile Application',
-        description: 'Comprehensive lottery management app with number generation, history tracking, and statistics.',
-        screenshots: [
-            'images/projects/lottery/screenshot1.jpg',
-            'images/projects/lottery/screenshot2.jpg',
-            'images/projects/lottery/screenshot3.jpg',
-             'images/projects/lottery/screenshot4.jpg'
-        ],
-        purpose: 'Built to enhance the lottery playing experience by providing number selection tools, result tracking, and statistical analysis. The app helps users make informed decisions and never miss checking their lottery tickets.',
-        problem: 'Lottery players often forget to check results, lose physical tickets, and miss draw deadlines. They lack tools for tracking their playing history and analyzing number patterns to inform their selections.',
-        impact: 'Downloaded by 3,000+ users with 70% weekly active usage. Users report never missing a draw check and appreciate the statistical insights for number selection. Reduced missed winnings due to unchecked tickets.',
-        beneficiaries: 'Lottery players, both casual and regular, who want better organization, tracking, and analysis tools for their lottery activities. Particularly useful for players managing multiple tickets.',
+        purpose: 'To enhance the lottery playing experience by providing number selection tools, result tracking, and statistical analysis.',
+        problem: 'Players forget to check results, lose physical tickets, and lack tools for tracking their playing history.',
+        impact: '3,000+ downloads with 70% weekly active usage and improved user engagement.',
+        beneficiaries: 'Casual and regular lottery players who want better organization and tracking tools.',
         features: [
             'Manual number selection interface',
             'Quick-pick random number generator',
@@ -141,43 +113,51 @@ const projectsData = [
             'Win/loss statistics and analytics',
             'Ticket storage and management',
             'Number frequency analysis',
-            'Push notifications for draws',
-            'Winning probability calculator'
+            'Push notifications for draws'
         ],
-        technologies: ['Flutter 3.x', 'Dart', 'Firebase', 'Push Notifications', 'Local Database', 'State Management'],
+        technologies: ['Flutter 3.x', 'Dart', 'Firebase', 'Push Notifications', 'Local Database'],
         github: 'https://github.com/princepro-cr/LotteryApp_Flutter'
     },
     {
-        id: 'wordpress',
+        id: 6,
         title: 'WordPress Business Websites',
         category: 'Web Development',
-        description: 'Collection of custom WordPress websites for small businesses with responsive design and SEO.',
-        screenshots: [
-            'images/projects/wordpress/screenshot1.jpg',
-             
-        ],
-        purpose: 'Developed custom WordPress solutions to help small businesses establish a professional online presence. Each website is tailored to the specific industry and business needs, focusing on user experience and conversion optimization.',
-        problem: 'Small businesses lacked affordable, custom web solutions that reflected their brand identity. Generic templates did not meet functional requirements, and many businesses had no online presence or poorly designed websites.',
-        impact: 'Delivered 15+ successful websites with an average 150% increase in client inquiries. Businesses reported improved credibility, better customer engagement, and measurable ROI from their online presence.',
-        beneficiaries: 'Small business owners, entrepreneurs, and service providers across various industries including retail, consulting, healthcare, and professional services. Helped businesses reach new customers and grow their revenue.',
+        purpose: 'To help small businesses establish a professional online presence with custom WordPress solutions.',
+        problem: 'Small businesses lacked affordable, custom web solutions that reflected their brand identity.',
+        impact: 'Delivered 15+ successful websites with an average 150% increase in client inquiries.',
+        beneficiaries: 'Small business owners across various industries including retail, consulting, and healthcare.',
         features: [
             'Fully responsive design for all devices',
             'Custom theme development',
             'SEO optimization and best practices',
             'E-commerce integration with WooCommerce',
             'Contact forms and lead generation',
-            'Google Analytics integration',
             'Performance optimization',
             'Content management training',
-            'Security and backup solutions',
-            'Ongoing maintenance and support'
+            'Security and backup solutions'
         ],
-        technologies: ['WordPress 6.x', 'PHP', 'MySQL', 'HTML5', 'CSS3', 'JavaScript', 'WooCommerce', 'Elementor'],
+        technologies: ['WordPress 6.x', 'PHP', 'MySQL', 'HTML5', 'CSS3', 'JavaScript', 'WooCommerce'],
         github: 'https://github.com/princepro-cr/wordpress-business-websites'
+    },
+    {
+        id: 7,
+        title: 'SkyScan - Modern Weather App',
+        category: 'Mobile Application',
+        purpose: 'A modern weather application built with Flutter that provides real-time weather conditions and forecasts. The app uses the OpenWeather API to deliver accurate weather data with a clean, intuitive interface.',
+        problem: 'Existing weather apps are often cluttered with ads, have confusing interfaces, or lack essential features like detailed forecasts. Users need a simple, fast, and reliable way to check weather conditions.',
+        impact: 'Delivers instant weather updates with 95% API accuracy, features a clean MVVM architecture for maintainability, and provides seamless user experience across Android and iOS platforms.',
+        beneficiaries: 'Daily commuters, travelers, and anyone who needs quick access to accurate weather information with a beautiful, ad-free experience.',
+        features: [
+            'Current weather conditions with temperature, humidity, and wind speed',
+            '5-day weather forecast with daily summaries',
+            'Search for weather in any city worldwide',
+            'Clean MVVM architecture for better code organization',
+            'Responsive design that works on both phones and tablets',
+            'Pull-to-refresh for latest weather data',
+            'Error handling with user-friendly messages',
+            'Loading states and smooth animations'
+        ],
+        technologies: ['Flutter 3.x', 'Dart', 'OpenWeather API', 'HTTP Package', 'MVVM Architecture'],
+        github: 'https://github.com/princepro-cr/SkyScanModern'
     }
 ];
-
-// Export for use in main.js
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = projectsData;
-}

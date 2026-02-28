@@ -1,455 +1,692 @@
 // ============================================
-// MAIN JAVASCRIPT FILE
+// MAIN JAVASCRIPT FILE - UPDATED WITH BETTER IMAGE HANDLING
 // ============================================
 
-// ====== DOM Content Loaded ======
+// DOM Elements
+const navbar = document.getElementById('navbar');
+const backToTop = document.getElementById('backToTop');
+const currentYearSpan = document.getElementById('currentYear');
+
+// ============================================
+// Initialize on DOM Load
+// ============================================
 document.addEventListener('DOMContentLoaded', function() {
     initializePortfolio();
 });
 
-// ====== Initialize All Features ======
 function initializePortfolio() {
-    initNavigation();
-    initCustomCursor();
-    initTypingEffect();
-    initScrollAnimations();
-    initProjects();
-    initProjectModal();
-    initContactForm();
-    initBackToTop();
+    loadAboutContent();
+    loadSkills();
+    loadProjects();
+    loadExperience();
+    loadContactInfo();
+    setupEventListeners();
+    updateCopyrightYear();
+    setupScrollAnimations();
 }
 
-// ====== Navigation ======
-function initNavigation() {
-    const navbar = document.getElementById('navbar');
-    const menuToggle = document.getElementById('menuToggle');
-    const navMenu = document.getElementById('navMenu');
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    // Scroll effect
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    });
-    
-    // Mobile menu toggle
-    menuToggle.addEventListener('click', () => {
-        menuToggle.classList.toggle('active');
-        navMenu.classList.toggle('active');
-    });
-    
-    // Close mobile menu on link click
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            menuToggle.classList.remove('active');
-            navMenu.classList.remove('active');
+// ============================================
+// Load About Section Content
+// ============================================
+function loadAboutContent() {
+    // About Highlights
+    const highlightsContainer = document.getElementById('aboutHighlights');
+    if (highlightsContainer) {
+        const highlights = [
+            { icon: 'fa-code', title: 'Clean Code', desc: 'Maintainable & scalable solutions' },
+            { icon: 'fa-lightbulb', title: 'Problem Solver', desc: 'Turning challenges into opportunities' },
+            { icon: 'fa-users', title: 'Team Player', desc: 'Collaborating for better outcomes' },
+            { icon: 'fa-rocket', title: 'Fast Learner', desc: 'Adapting to new technologies quickly' }
+        ];
+        
+        highlights.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'highlight-card';
+            card.innerHTML = `
+                <div class="highlight-icon"><i class="fas ${item.icon}"></i></div>
+                <h4>${item.title}</h4>
+                <p>${item.desc}</p>
+            `;
+            highlightsContainer.appendChild(card);
         });
-    });
-    
-    // Active link on scroll
-    window.addEventListener('scroll', () => {
-        let current = '';
-        const sections = document.querySelectorAll('section[id]');
-        
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (window.scrollY >= sectionTop - 200) {
-                current = section.getAttribute('id');
-            }
-        });
-        
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href').substring(1) === current) {
-                link.classList.add('active');
-            }
-        });
-    });
-    
-    // Smooth scroll for anchor links
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            if (targetSection) {
-                targetSection.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-}
-
-// ====== Custom Cursor ======
-function initCustomCursor() {
-    const cursor = document.querySelector('.cursor');
-    const cursorFollower = document.querySelector('.cursor-follower');
-    
-    if (!cursor || !cursorFollower) return;
-    
-    let mouseX = 0, mouseY = 0;
-    let cursorX = 0, cursorY = 0;
-    let followerX = 0, followerY = 0;
-    
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-    });
-    
-    function animateCursor() {
-        // Smooth cursor movement
-        cursorX += (mouseX - cursorX) * 0.2;
-        cursorY += (mouseY - cursorY) * 0.2;
-        
-        followerX += (mouseX - followerX) * 0.1;
-        followerY += (mouseY - followerY) * 0.1;
-        
-        cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
-        cursorFollower.style.transform = `translate(${followerX}px, ${followerY}px)`;
-        
-        requestAnimationFrame(animateCursor);
     }
-    
-    animateCursor();
-    
-    // Cursor effects on hover
-    const hoverElements = document.querySelectorAll('a, button, .project-card');
-    hoverElements.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            cursor.style.transform = `translate(${cursorX}px, ${cursorY}px) scale(1.5)`;
-            cursorFollower.style.transform = `translate(${followerX}px, ${followerY}px) scale(2)`;
-        });
+
+    // About Numbers
+    const numbersContainer = document.getElementById('aboutNumbers');
+    if (numbersContainer) {
+        const numbers = [
+            { num: '8+', label: 'Projects' },
+            { num: '2+', label: 'Years Exp' },
+            { num: '50+', label: 'Students' }
+        ];
         
-        el.addEventListener('mouseleave', () => {
-            cursor.style.transform = `translate(${cursorX}px, ${cursorY}px) scale(1)`;
-            cursorFollower.style.transform = `translate(${followerX}px, ${followerY}px) scale(1.5)`;
-        });
-    });
+        numbersContainer.innerHTML = numbers.map(item => `
+            <div class="num-item">
+                <strong>${item.num}</strong>
+                <span>${item.label}</span>
+            </div>
+        `).join('');
+    }
+
+    // About Tags
+    const tagsContainer = document.getElementById('aboutTags');
+    if (tagsContainer) {
+        const tags = ['Full-Stack Roles', 'Mobile Development', 'Remote / Hybrid', 'South Africa'];
+        tagsContainer.innerHTML = tags.map(tag => `<span class="skill-chip">${tag}</span>`).join('');
+    }
 }
 
-// ====== Typing Effect ======
-function initTypingEffect() {
-    const typingText = document.querySelector('.typing-text');
-    if (!typingText) return;
-    
-    const texts = [
-        'Full-Stack Developer',
-        'Mobile App Developer',
-        'ASP.NET Core Specialist',
-        'Flutter Expert',
-        'Problem Solver'
+// ============================================
+// Load Skills Section
+// ============================================
+function loadSkills() {
+    const skillsGrid = document.getElementById('skillsGrid');
+    if (!skillsGrid) return;
+
+    const skillsData = [
+        {
+            icon: 'fa-mobile-alt',
+            title: 'Mobile Development',
+            skills: ['Flutter 3.x', 'Dart', 'Firebase', 'Audio Service', 'Local Storage', 'Push Notifications']
+        },
+        {
+            icon: 'fa-server',
+            title: 'Backend & APIs',
+            skills: ['C#', 'ASP.NET Core 8', 'Entity Framework Core', 'RESTful APIs', 'MVC Pattern', 'LINQ']
+        },
+        {
+            icon: 'fa-database',
+            title: 'Databases',
+            skills: ['SQL Server', 'MySQL', 'Firebase Firestore', 'Supabase', 'Entity Framework']
+        },
+        {
+            icon: 'fa-globe',
+            title: 'Web Technologies',
+            skills: ['HTML5', 'CSS3', 'JavaScript', 'Bootstrap 5', 'Material-UI', 'WordPress 6.x', 'PHP']
+        }
     ];
-    
-    let textIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    let typingSpeed = 100;
-    
-    function type() {
-        const currentText = texts[textIndex];
-        
-        if (isDeleting) {
-            typingText.textContent = currentText.substring(0, charIndex - 1);
-            charIndex--;
-            typingSpeed = 50;
-        } else {
-            typingText.textContent = currentText.substring(0, charIndex + 1);
-            charIndex++;
-            typingSpeed = 100;
-        }
-        
-        if (!isDeleting && charIndex === currentText.length) {
-            isDeleting = true;
-            typingSpeed = 2000; // Pause at end
-        } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            textIndex = (textIndex + 1) % texts.length;
-            typingSpeed = 500; // Pause before next word
-        }
-        
-        setTimeout(type, typingSpeed);
-    }
-    
-    type();
-}
 
-// ====== Scroll Animations ======
-function initScrollAnimations() {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px'
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-    
-    // Observe elements
-    const animateElements = document.querySelectorAll('.skill-card, .project-card, .about-card, .timeline-item, .contact-card');
-    animateElements.forEach((el, index) => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = `all 0.6s ease-out ${index * 0.1}s`;
-        observer.observe(el);
+    skillsData.forEach(category => {
+        const categoryEl = document.createElement('div');
+        categoryEl.className = 'skill-category reveal';
+        categoryEl.innerHTML = `
+            <div class="skill-cat-header">
+                <div class="skill-cat-icon"><i class="fas ${category.icon}"></i></div>
+                <h3>${category.title}</h3>
+            </div>
+            <div class="skill-list">
+                ${category.skills.map(skill => `<span class="skill-chip">${skill}</span>`).join('')}
+            </div>
+        `;
+        skillsGrid.appendChild(categoryEl);
     });
+
+    // Proficiency Bars
+    const skillBars = document.getElementById('skillBars');
+    if (skillBars) {
+        const proficiencies = [
+            { name: 'C# / ASP.NET Core', percent: 88 },
+            { name: 'Flutter / Dart', percent: 85 },
+            { name: 'HTML / CSS / JS', percent: 82 },
+            { name: 'SQL / Databases', percent: 80 },
+            { name: 'WordPress', percent: 90 }
+        ];
+
+        proficiencies.forEach(item => {
+            const bar = document.createElement('div');
+            bar.className = 'skill-bar-item';
+            bar.innerHTML = `
+                <div class="skill-bar-info">
+                    <span>${item.name}</span>
+                    <strong>${item.percent}%</strong>
+                </div>
+                <div class="skill-bar-track">
+                    <div class="skill-bar-fill" data-width="${item.percent / 100}"></div>
+                </div>
+            `;
+            skillBars.appendChild(bar);
+        });
+    }
 }
 
-// ====== Projects ======
-function initProjects() {
+// ============================================
+// Load Projects - IMPROVED IMAGE HANDLING
+// ============================================
+function loadProjects() {
     const projectsGrid = document.getElementById('projectsGrid');
     if (!projectsGrid) return;
-    
-    projectsData.forEach(project => {
-        const projectCard = createProjectCard(project);
-        projectsGrid.appendChild(projectCard);
-    });
-}
 
-function createProjectCard(project) {
-    const card = document.createElement('div');
-    card.className = 'project-card';
-    card.dataset.projectId = project.id;
-    
-    // Create image section
-    const imageDiv = document.createElement('div');
-    imageDiv.className = 'project-image';
-    
-    if (project.screenshots && project.screenshots.length > 0) {
-        const img = document.createElement('img');
-        img.src = project.screenshots[0];
-        img.alt = project.title;
-        img.onerror = () => {
-            // Fallback if image doesn't exist
-            imageDiv.innerHTML = `<div class="project-image-placeholder"><i class="fas fa-image"></i></div>`;
-        };
-        imageDiv.appendChild(img);
-    } else {
-        imageDiv.innerHTML = `<div class="project-image-placeholder"><i class="fas fa-image"></i></div>`;
-    }
-    
-    // Create content section
-    const contentDiv = document.createElement('div');
-    contentDiv.className = 'project-content';
-    
-    contentDiv.innerHTML = `
-        <div class="project-header">
-            <div>
-                <h3 class="project-title">${project.title}</h3>
-                <span class="project-category">${project.category}</span>
-            </div>
-        </div>
-        <p class="project-description">${project.description}</p>
-        <div class="project-tech">
-            ${project.technologies.slice(0, 3).map(tech => 
-                `<span class="tech-badge">${tech}</span>`
-            ).join('')}
-            ${project.technologies.length > 3 ? `<span class="tech-badge">+${project.technologies.length - 3} more</span>` : ''}
-        </div>
-        <div class="project-footer">
-            <div class="project-links">
-                <a href="${project.github}" target="_blank" class="project-link" onclick="event.stopPropagation()">
-                    <i class="fab fa-github"></i>
-                </a>
-            </div>
-            <button class="view-details-btn">
-                View Details <i class="fas fa-arrow-right"></i>
-            </button>
-        </div>
-    `;
-    
-    card.appendChild(imageDiv);
-    card.appendChild(contentDiv);
-    
-    // Add click event to open modal
-    card.addEventListener('click', () => {
-        openProjectModal(project);
-    });
-    
-    return card;
-}
+    // Clear any existing content
+    projectsGrid.innerHTML = '';
 
-// ====== Project Modal ======
-function initProjectModal() {
-    const modal = document.getElementById('projectModal');
-    const modalClose = document.getElementById('modalClose');
-    const modalCloseBtns = document.querySelectorAll('.modal-close-btn');
-    const modalOverlay = document.querySelector('.modal-overlay');
-    
-    // Close modal
-    modalClose.addEventListener('click', closeProjectModal);
-    modalOverlay.addEventListener('click', closeProjectModal);
-    modalCloseBtns.forEach(btn => {
-        btn.addEventListener('click', closeProjectModal);
-    });
-    
-    // Close on escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.classList.contains('active')) {
-            closeProjectModal();
+    // Use your actual projects data from projects-data.js
+    projectsData.forEach((project, index) => {
+        const card = document.createElement('div');
+        card.className = 'project-card reveal';
+        
+        // Get project folder and thumbnail
+        const projectFolder = getProjectFolder(project.title);
+        let imagePath = null;
+        
+        if (projectFolder) {
+            imagePath = getProjectThumbnail(project.title, projectFolder);
         }
+        
+        // Get first three technologies for display
+        const techDisplay = project.technologies.slice(0, 3);
+        
+        card.innerHTML = `
+            <div class="project-thumb">
+                ${imagePath ? 
+                    `<img src="${imagePath}" 
+                          alt="${project.title}"
+                          loading="lazy"
+                          onload="this.style.opacity='1'"
+                          onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\'fas ${getProjectIcon(project.category)}\' style=\'opacity:0.35; font-size:4rem;\'></i>'">` : 
+                    `<i class="fas ${getProjectIcon(project.category)}" style="opacity:0.35; font-size:4rem;"></i>`
+                }
+            </div>
+            <div class="project-body">
+                <div class="project-tags">
+                    <span class="project-tag">${project.category}</span>
+                </div>
+                <h3>${project.title}</h3>
+                <p>${project.purpose.substring(0, 100)}${project.purpose.length > 100 ? '...' : ''}</p>
+                <div class="project-footer">
+                    <div class="project-tech">
+                        ${techDisplay.map(tech => `<span class="tech-dot" title="${tech}"></span>`).join('')}
+                    </div>
+                    <a href="${project.github}" class="project-link" target="_blank">
+                        View Code <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        `;
+
+        // Add click event for modal
+        card.addEventListener('click', () => openProjectModal(project));
+
+        projectsGrid.appendChild(card);
     });
 }
 
+// Helper function to get project thumbnail with fallback
+function getProjectThumbnail(title, folder) {
+    // Try different possible image names
+    const possibleImages = [
+        `images/projects/${folder}/screenshot1.jpg`,
+        `images/projects/${folder}/screenshot1.jpeg`,
+        `images/projects/${folder}/main.jpg`,
+        `images/projects/${folder}/profile.jpg`
+    ];
+    
+    // Return the first one (we'll let onerror handle fallbacks)
+    return possibleImages[0];
+}
+
+// Helper function to get project folder name from title
+function getProjectFolder(title) {
+    const folderMap = {
+        'ProjectX - Student & HR Portal': 'projectx',
+        'Library Management System': 'library',
+        'SemosaFM - Radio Streaming App': 'semosafm',
+        'LeavePulse - Leave Management': 'leavepulse',
+        'Lottery Mobile Application': 'lottery',
+        'WordPress Business Websites': 'wordpress',
+        'SkyScan - Modern Weather App': 'skyscan' 
+
+    };
+    return folderMap[title] || null;
+}
+
+// Helper function to get icon based on project category
+function getProjectIcon(category) {
+    const icons = {
+        'Full-Stack System': 'fa-laptop-code',
+        'Web Application': 'fa-globe',
+        'Mobile Application': 'fa-mobile-alt',
+        'Web Development': 'fa-wordpress'
+    };
+    return icons[category] || 'fa-folder-open';
+}
+
+// ============================================
+// Project Modal Functions - IMPROVED IMAGE HANDLING
+// ============================================
 function openProjectModal(project) {
     const modal = document.getElementById('projectModal');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalCategory = document.getElementById('modalCategory');
-    const modalPurpose = document.getElementById('modalPurpose');
-    const modalProblem = document.getElementById('modalProblem');
-    const modalImpact = document.getElementById('modalImpact');
-    const modalBeneficiaries = document.getElementById('modalBeneficiaries');
-    const modalFeatures = document.getElementById('modalFeatures');
-    const modalTechStack = document.getElementById('modalTechStack');
-    const modalGitHub = document.getElementById('modalGitHub');
-    const mainScreenshot = document.getElementById('mainScreenshot');
-    const thumbnailGallery = document.getElementById('thumbnailGallery');
-    
-    // Set content
-    modalTitle.textContent = project.title;
-    modalCategory.textContent = project.category;
-    modalPurpose.textContent = project.purpose;
-    modalProblem.textContent = project.problem;
-    modalImpact.textContent = project.impact;
-    modalBeneficiaries.textContent = project.beneficiaries;
-    modalGitHub.href = project.github;
-    
+    if (!modal) return;
+
+    // Set modal content
+    document.getElementById('modalTitle').textContent = project.title;
+    document.getElementById('modalCategory').textContent = project.category;
+    document.getElementById('modalPurpose').textContent = project.purpose;
+    document.getElementById('modalProblem').textContent = project.problem;
+    document.getElementById('modalImpact').textContent = project.impact;
+    document.getElementById('modalBeneficiaries').textContent = project.beneficiaries;
+    document.getElementById('modalGitHub').href = project.github;
+
     // Set features
-    modalFeatures.innerHTML = '';
+    const featuresList = document.getElementById('modalFeatures');
+    featuresList.innerHTML = '';
     project.features.forEach(feature => {
         const li = document.createElement('li');
         li.textContent = feature;
-        modalFeatures.appendChild(li);
+        featuresList.appendChild(li);
     });
-    
+
     // Set technologies
-    modalTechStack.innerHTML = '';
+    const techContainer = document.getElementById('modalTech');
+    techContainer.innerHTML = '';
     project.technologies.forEach(tech => {
         const span = document.createElement('span');
-        span.className = 'skill-tag';
+        span.className = 'skill-chip';
         span.textContent = tech;
-        modalTechStack.appendChild(span);
+        techContainer.appendChild(span);
     });
+
+    // Get project folder
+    const projectFolder = getProjectFolder(project.title);
+    const mainImage = document.getElementById('modalMainImage');
     
-    // Set screenshots
-    if (project.screenshots && project.screenshots.length > 0) {
-        mainScreenshot.src = project.screenshots[0];
-        mainScreenshot.alt = project.title;
+    // Set main image with fallback
+    if (projectFolder) {
+        // Try to load the first screenshot
+        let imagePath = `images/projects/${projectFolder}/screenshot1.jpg`;
         
-        thumbnailGallery.innerHTML = '';
-        project.screenshots.forEach((screenshot, index) => {
-            const thumbnail = document.createElement('div');
-            thumbnail.className = 'thumbnail';
-            if (index === 0) thumbnail.classList.add('active');
+        // Special case for projectx which has a .jpeg for screenshot4
+        if (projectFolder === 'projectx') {
+            imagePath = `images/projects/${projectFolder}/screenshot1.jpg`;
+        }
+        
+        mainImage.src = imagePath;
+        mainImage.onerror = function() {
+            // Try different extensions if first fails
+            const extensions = ['.jpg', '.jpeg', '.png'];
+            let tried = 0;
             
-            const img = document.createElement('img');
-            img.src = screenshot;
-            img.alt = `${project.title} screenshot ${index + 1}`;
-            img.onerror = () => {
-                thumbnail.innerHTML = '<i class="fas fa-image"></i>';
+            const tryNextImage = () => {
+                tried++;
+                if (tried <= extensions.length) {
+                    this.src = `images/projects/${projectFolder}/screenshot1${extensions[tried-1]}`;
+                } else {
+                    // If all fail, show placeholder
+                    this.src = 'https://via.placeholder.com/600x400?text=' + encodeURIComponent(project.title);
+                }
             };
             
-            thumbnail.appendChild(img);
-            thumbnail.addEventListener('click', () => {
-                mainScreenshot.src = screenshot;
-                document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
-                thumbnail.classList.add('active');
+            this.onerror = tryNextImage;
+            tryNextImage();
+        };
+    } else {
+        mainImage.src = 'https://via.placeholder.com/600x400?text=' + encodeURIComponent(project.title);
+    }
+    mainImage.alt = project.title;
+
+    // Load thumbnails
+    const thumbnails = document.getElementById('modalThumbnails');
+    thumbnails.innerHTML = '';
+    
+    if (projectFolder) {
+        // Get screenshot count based on project
+        const screenshotCount = getScreenshotCount(projectFolder);
+        
+        for (let i = 1; i <= screenshotCount; i++) {
+            const thumb = document.createElement('div');
+            thumb.className = `modal-thumb ${i === 1 ? 'active' : ''}`;
+            
+            // Determine file extension
+            let extension = '.jpg';
+            if (projectFolder === 'projectx' && i === 4) {
+                extension = '.jpeg';
+            }
+            
+            const imgSrc = `images/projects/${projectFolder}/screenshot${i}${extension}`;
+            
+            thumb.innerHTML = `<img src="${imgSrc}" 
+                                     alt="Screen ${i}" 
+                                     loading="lazy"
+                                     onerror="this.onerror=null; this.src='https://via.placeholder.com/100x80?text=Screen+${i}';">`;
+            
+            thumb.addEventListener('click', function() {
+                const imgSrc = this.querySelector('img').src;
+                mainImage.src = imgSrc;
+                document.querySelectorAll('.modal-thumb').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
             });
             
-            thumbnailGallery.appendChild(thumbnail);
-        });
+            thumbnails.appendChild(thumb);
+        }
     }
     
-    // Show modal
+    // If no thumbnails were added, show placeholders
+    if (thumbnails.children.length === 0) {
+        for (let i = 1; i <= 3; i++) {
+            const thumb = document.createElement('div');
+            thumb.className = `modal-thumb ${i === 1 ? 'active' : ''}`;
+            thumb.innerHTML = `<img src="https://via.placeholder.com/100x80?text=Screen+${i}" alt="Screen ${i}">`;
+            thumb.addEventListener('click', function() {
+                const imgSrc = this.querySelector('img').src.replace('100x80', '600x400');
+                mainImage.src = imgSrc;
+                document.querySelectorAll('.modal-thumb').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+            thumbnails.appendChild(thumb);
+        }
+    }
+
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
 }
 
+// Helper function to get number of screenshots per project
+function getScreenshotCount(folder) {
+    const counts = {
+        'leavepulse': 3,
+        'library': 3,
+        'lottery': 4,
+        'projectx': 4,
+        'semosafm': 3,
+        'wordpress': 2
+    };
+    return counts[folder] || 3;
+}
+
 function closeProjectModal() {
-    const modal = document.getElementById('projectModal');
-    modal.classList.remove('active');
+    document.getElementById('projectModal').classList.remove('active');
     document.body.style.overflow = 'auto';
 }
 
-// ====== Contact Form ======
-function initContactForm() {
-    const contactForm = document.getElementById('contactForm');
-    if (!contactForm) return;
+// ============================================
+// Load Experience
+// ============================================
+function loadExperience() {
+    const expTabs = document.getElementById('expTabs');
+    const expDetails = document.getElementById('expDetails');
     
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const subject = document.getElementById('subject').value;
-        const message = document.getElementById('message').value;
-        
-        // Here you would typically send this to your backend
-        // For now, we'll just show an alert
-        alert(`Thank you, ${name}! Your message has been received. I'll get back to you soon!`);
-        
-        // Reset form
-        contactForm.reset();
-        
-        // You can integrate with services like EmailJS, Formspree, or your own backend
-        // Example with EmailJS:
-        // emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
-        //     from_name: name,
-        //     from_email: email,
-        //     subject: subject,
-        //     message: message
-        // });
+    if (!expTabs || !expDetails) return;
+
+    const experiences = [
+        {
+            company: 'Martelo Digital',
+            role: 'Standard Developer',
+            period: '2023 – 2025',
+            fullPeriod: 'January 2023 – January 2025',
+            description: 'Developed and maintained business websites using WordPress, creating responsive layouts and custom themes for diverse client requirements.',
+            bullets: [
+                'Built 10+ custom WordPress websites for clients across various industries',
+                'Optimized site performance, page speed, and SEO for improved discoverability',
+                'Maintained ongoing client relationships and provided post-launch support',
+                'Collaborated closely with designers to translate mockups into pixel-perfect code'
+            ]
+        },
+        {
+            company: 'CUT University',
+            role: 'Lab Assistant',
+            period: 'Mar – Oct 2024',
+            fullPeriod: 'March 2024 – October 2024',
+            description: 'Assisted students with debugging and completing programming projects, supporting practical learning in C# and ASP.NET Core.',
+            bullets: [
+                'Guided 50+ students through complex coding challenges and debugging sessions',
+                'Provided technical support for lab equipment and development environments',
+                'Helped students understand key programming concepts including OOP and MVC',
+                'Developed supplementary learning materials and code examples'
+            ]
+        },
+        {
+            company: 'Self-Employed',
+            role: 'Freelance Developer',
+            period: 'Freelance',
+            fullPeriod: 'Freelance (Ongoing)',
+            description: 'Created custom WordPress solutions for small businesses, focusing on responsive design, performance, and user experience.',
+            bullets: [
+                'Delivered projects consistently on time and within agreed budgets',
+                'Customized themes and plugins to match unique client requirements',
+                'Provided ongoing maintenance, updates, and performance monitoring',
+                'Built direct client relationships through transparent communication'
+            ]
+        }
+    ];
+
+    // Clear existing content
+    expTabs.innerHTML = '';
+    expDetails.innerHTML = '';
+
+    // Create tabs
+    experiences.forEach((exp, index) => {
+        const tab = document.createElement('div');
+        tab.className = `exp-tab ${index === 0 ? 'active' : ''}`;
+        tab.setAttribute('onclick', `showExp('exp${index + 1}', this)`);
+        tab.innerHTML = `
+            <h4>${exp.company}</h4>
+            <p>${exp.role}</p>
+            <span>${exp.period}</span>
+        `;
+        expTabs.appendChild(tab);
+    });
+
+    // Create details
+    experiences.forEach((exp, index) => {
+        const detail = document.createElement('div');
+        detail.className = `exp-detail ${index === 0 ? 'active' : ''}`;
+        detail.id = `exp${index + 1}`;
+        detail.innerHTML = `
+            <div class="exp-detail-header">
+                <h3>${exp.role}</h3>
+                <p class="company">${exp.company}</p>
+                <p class="period">${exp.fullPeriod}</p>
+            </div>
+            <div class="exp-detail-body">
+                <p>${exp.description}</p>
+                <ul class="exp-bullets">
+                    ${exp.bullets.map(bullet => `<li>${bullet}</li>`).join('')}
+                </ul>
+            </div>
+        `;
+        expDetails.appendChild(detail);
     });
 }
 
-// ====== Back to Top Button ======
-function initBackToTop() {
-    const backToTopButton = document.getElementById('backToTop');
-    if (!backToTopButton) return;
-    
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 500) {
-            backToTopButton.classList.add('active');
-        } else {
-            backToTopButton.classList.remove('active');
+// ============================================
+// Load Contact Info
+// ============================================
+function loadContactInfo() {
+    const contactInfo = document.getElementById('contactInfo');
+    if (!contactInfo) return;
+
+    const infoItems = [
+        { icon: 'fa-map-marker-alt', label: 'Location', value: 'Bloemfontein, South Africa' },
+        { icon: 'fa-envelope', label: 'Email', value: 'princepromisesemosa@gmail.com' },
+        { icon: 'fa-phone', label: 'Phone', value: '+27 60 834 1700' }
+    ];
+
+    contactInfo.innerHTML = infoItems.map(item => `
+        <div class="contact-info-item">
+            <div class="contact-info-icon"><i class="fas ${item.icon}"></i></div>
+            <div>
+                <h4>${item.label}</h4>
+                <p>${item.value}</p>
+            </div>
+        </div>
+    `).join('');
+
+    const contactSocials = document.getElementById('contactSocials');
+    if (contactSocials) {
+        const socials = [
+            { url: 'https://github.com/princepro-cr', icon: 'fa-github' },
+            { url: 'https://linkedin.com/in/prince-promise-semosa-abb88832b', icon: 'fa-linkedin-in' },
+            { url: 'mailto:princepromisesemosa@gmail.com', icon: 'fa-envelope' }
+        ];
+
+        contactSocials.innerHTML = socials.map(social => `
+            <a href="${social.url}" class="contact-social-btn" target="_blank">
+                <i class="fab ${social.icon}"></i>
+            </a>
+        `).join('');
+    }
+}
+
+// ============================================
+// Setup Event Listeners
+// ============================================
+function setupEventListeners() {
+    // Scroll effects
+    window.addEventListener('scroll', handleScroll);
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', handleSmoothScroll);
+    });
+
+    // Contact form
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', handleContactSubmit);
+    }
+
+    // Modal close buttons
+    const modalClose = document.getElementById('modalClose');
+    const modalCloseBtn = document.querySelector('.modal-close-btn');
+    const modalOverlay = document.querySelector('.modal-overlay');
+
+    if (modalClose) {
+        modalClose.addEventListener('click', closeProjectModal);
+    }
+    if (modalCloseBtn) {
+        modalCloseBtn.addEventListener('click', closeProjectModal);
+    }
+    if (modalOverlay) {
+        modalOverlay.addEventListener('click', closeProjectModal);
+    }
+
+    // Back to top
+    if (backToTop) {
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    // Escape key for modal
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            const modal = document.getElementById('projectModal');
+            if (modal && modal.classList.contains('active')) {
+                closeProjectModal();
+            }
         }
     });
+}
+
+function handleScroll() {
+    // Navbar scroll effect
+    if (window.scrollY > 60) {
+        navbar?.classList.add('scrolled');
+        backToTop?.classList.add('show');
+    } else {
+        navbar?.classList.remove('scrolled');
+        backToTop?.classList.remove('show');
+    }
+
+    // Active nav links
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    let current = '';
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        if (window.scrollY >= sectionTop - 120) {
+            current = section.getAttribute('id');
+        }
+    });
+
+    navLinks.forEach(link => {
+        link.style.color = '';
+        if (link.getAttribute('href') === '#' + current) {
+            link.style.color = 'var(--blue-vivid)';
+        }
+    });
+}
+
+function handleSmoothScroll(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+function handleContactSubmit(e) {
+    e.preventDefault();
+    const btn = this.querySelector('.btn-submit');
+    const originalText = btn.innerHTML;
     
-    backToTopButton.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+    btn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+    btn.style.background = '#22C55E';
+    
+    setTimeout(() => {
+        btn.innerHTML = originalText;
+        btn.style.background = '';
+        this.reset();
+    }, 3000);
+
+    // Here you would typically send the form data to a server
+    console.log('Form submitted:', {
+        name: document.getElementById('contactName').value,
+        email: document.getElementById('contactEmail').value,
+        subject: document.getElementById('contactSubject').value,
+        message: document.getElementById('contactMessage').value
+    });
+}
+
+// ============================================
+// Experience Tabs Function (Global)
+// ============================================
+window.showExp = function(id, tab) {
+    document.querySelectorAll('.exp-detail').forEach(d => d.classList.remove('active'));
+    document.querySelectorAll('.exp-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    tab.classList.add('active');
+};
+
+// ============================================
+// Scroll Animations
+// ============================================
+function setupScrollAnimations() {
+    const reveals = document.querySelectorAll('.reveal');
+    const barObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.classList.add('visible');
+                }, 100);
+            }
         });
+    }, { threshold: 0.1 });
+
+    reveals.forEach(el => barObserver.observe(el));
+
+    // Skill bars animation
+    const skillBars = document.querySelectorAll('.skill-bar-fill');
+    const skillObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const width = entry.target.dataset.width;
+                entry.target.style.width = (parseFloat(width) * 100) + '%';
+            }
+        });
+    }, { threshold: 0.5 });
+
+    skillBars.forEach(bar => {
+        bar.style.width = '0%';
+        skillObserver.observe(bar);
     });
 }
 
-// ====== Utility Functions ======
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
+// ============================================
+// Update Copyright Year
+// ============================================
+function updateCopyrightYear() {
+    if (currentYearSpan) {
+        currentYearSpan.textContent = new Date().getFullYear();
+    }
 }
-
-// Update year in footer
-document.addEventListener('DOMContentLoaded', () => {
-    const yearElements = document.querySelectorAll('#currentYear');
-    yearElements.forEach(el => {
-        el.textContent = new Date().getFullYear();
-    });
-});

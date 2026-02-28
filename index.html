@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Promise Semosa | Full-Stack Developer Portfolio</title>
+    <title>Promise Semosa — Full-Stack Developer</title>
     
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -15,538 +15,294 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Cursor Effect -->
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
 
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="container nav-container">
-            <a href="#home" class="logo">
-                <span class="logo-text">Promise</span>
-                <span class="logo-dot">.</span>
-            </a>
-            
-            <button class="menu-toggle" id="menuToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#experience" class="nav-link">Experience</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+<!-- NAVIGATION -->
+<nav id="navbar">
+    <a href="#home" class="nav-logo">Promise  <span>.</span></a>
+    <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact" class="nav-cta">Let's Talk</a></li>
+    </ul>
+</nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-background">
-            <div class="gradient-orb orb-1"></div>
-            <div class="gradient-orb orb-2"></div>
-            <div class="gradient-orb orb-3"></div>
-        </div>
-        
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <div class="hero-label">
-                        <i class="fas fa-circle"></i>
-                        <span>Available for hire</span>
-                    </div>
-                    
-                    <h1 class="hero-title">
-                        Hi, I'm <span class="gradient-text">Promise Semosa</span>
-                    </h1>
-                    
-                    <h2 class="hero-subtitle">
-                        <span class="typing-text"></span>
-                        <span class="cursor-blink">|</span>
-                    </h2>
-                    
-                    <p class="hero-description">
-                        I craft innovative digital solutions that bridge the gap between complex problems 
-                        and elegant, user-centric applications. Specialized in full-stack development with 
-                        a passion for creating impactful software.
-                    </p>
-                    
-                    <div class="hero-buttons">
-                        <a href="#projects" class="btn btn-primary">
-                            <span>View My Work</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                        <a href="#contact" class="btn btn-secondary">
-                            <span>Get In Touch</span>
-                        </a>
-                    </div>
-                    
-                    <div class="hero-social">
-                        <a href="https://github.com/princepro-cr" target="_blank" class="social-link">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://linkedin.com/in/prince-promise-semosa-abb88832b" target="_blank" class="social-link">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="mailto:princepromisesemosa@gmail.com" class="social-link">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="hero-image">
-                    <div class="profile-container">
-                        <div class="profile-ring"></div>
-                        <div class="profile-pic-wrapper">
-                            <img src="images/profile.jpg" alt="Promise Semosa" class="profile-pic">
-                        </div>
-                        <div class="floating-badge badge-1">
-                            <i class="fab fa-flutter"></i>
-                            <span>Flutter</span>
-                        </div>
-                        <div class="floating-badge badge-2">
-                            <i class="fab fa-microsoft"></i>
-                            <span>C#</span>
-                        </div>
-                        <div class="floating-badge badge-3">
-                            <i class="fas fa-fire"></i>
-                            <span>Firebase</span>
-                        </div>
-                    </div>
-                </div>
+<!-- HERO SECTION -->
+<section id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-inner">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <div class="badge-dot"></div>
+                Available for hire
             </div>
-        </div>
-        
-        <div class="scroll-indicator">
-            <span>Scroll Down</span>
-            <div class="scroll-arrow"></div>
-        </div>
-    </section>
 
-    <!-- About Section -->
-    <section id="about" class="section about-section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Get To Know Me</span>
-                <h2 class="section-title">About Me</h2>
+            <h1 class="hero-title">
+                Hi, I'm<br>
+                <span class="name-accent">Promise Semosa</span>
+            </h1>
+
+            <div class="hero-role">
+                <span class="role-highlight">Full-Stack</span> & Mobile Developer
             </div>
-            
-            <div class="about-content">
-                <div class="about-text">
-                    <p class="lead">
-                        I'm a results-driven Information Technology graduate with a proven track record 
-                        of delivering scalable, user-focused solutions that solve real-world problems.
-                    </p>
-                    
-                    <p>
-                        My journey in software development began at the Central University of Technology, 
-                        where I developed a deep passion for creating applications that make a tangible 
-                        difference. I specialize in full-stack web development using ASP.NET Core and 
-                        mobile app development with Flutter, always focusing on clean code, optimal 
-                        performance, and exceptional user experience.
-                    </p>
-                    
-                    <p>
-                        What drives me is the opportunity to transform complex challenges into elegant 
-                        solutions. Whether it's automating library operations, streamlining employee 
-                        leave management, or building engaging mobile experiences, I approach every 
-                        project with dedication and attention to detail.
-                    </p>
-                    
-                    <div class="about-stats">
-                        <div class="stat-item">
-                            <h3>8+</h3>
-                            <p>Projects Completed</p>
-                        </div>
-                        <div class="stat-item">
-                            <h3>2+</h3>
-                            <p>Years Experience</p>
-                        </div>
-                        <div class="stat-item">
-                            <h3>5+</h3>
-                            <p>Technologies Mastered</p>
-                        </div>
-                    </div>
-                    
-                    <div class="about-actions">
-                        <a href="files/Promise_Semosa_CV.pdf" class="btn btn-primary" download>
-                            <i class="fas fa-download"></i>
-                            <span>Download CV</span>
-                        </a>
-                        <a href="#contact" class="btn btn-outline">
-                            <span>Contact Me</span>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="about-image">
-                    <div class="about-card">
-                        <div class="card-content">
-                            <i class="fas fa-code"></i>
-                            <h3>Clean Code</h3>
-                            <p>Writing maintainable, scalable solutions</p>
-                        </div>
-                    </div>
-                    <div class="about-card">
-                        <div class="card-content">
-                            <i class="fas fa-lightbulb"></i>
-                            <h3>Problem Solver</h3>
-                            <p>Turning challenges into opportunities</p>
-                        </div>
-                    </div>
-                    <div class="about-card">
-                        <div class="card-content">
-                            <i class="fas fa-users"></i>
-                            <h3>Team Player</h3>
-                            <p>Collaborating for better outcomes</p>
-                        </div>
-                    </div>
-                </div>
+
+            <p class="hero-desc">
+                Crafting elegant digital experiences — from robust ASP.NET Core backends to polished Flutter mobile apps. I turn complex problems into clean, scalable solutions.
+            </p>
+
+            <div class="hero-actions">
+                <a href="#projects" class="btn-primary">
+                    <i class="fas fa-folder-open"></i> View Projects
+                </a>
+                <a href="files/Promise_Semosa_CV.pdf" class="btn-ghost" download>
+                    <i class="fas fa-download"></i> Download CV
+                </a>
+            </div>
+
+            <div class="hero-socials">
+                <a href="https://github.com/princepro-cr" class="social-icon" target="_blank">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://linkedin.com/in/prince-promise-semosa-abb88832b" class="social-icon" target="_blank">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="mailto:princepromisesemosa@gmail.com" class="social-icon">
+                    <i class="fas fa-envelope"></i>
+                </a>
             </div>
         </div>
-    </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="section skills-section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">My Expertise</span>
-                <h2 class="section-title">Technical Skills</h2>
-            </div>
-            
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3>Programming Languages</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">C#</span>
-                        <span class="skill-tag">Dart</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">HTML5</span>
-                        <span class="skill-tag">CSS3</span>
-                        <span class="skill-tag">SQL</span>
+        <div class="hero-visual">
+            <div class="profile-frame">
+                <div class="profile-card-main">
+                    <div class="profile-img-placeholder" id="profileContainer">
+                        <!-- This will try to load your image, and show icon if it fails -->
+                        <img src="images/profile.jpg" alt="Promise Semosa" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-user\'></i><span>Promise Semosa</span>'">
                     </div>
                 </div>
-                
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-layer-group"></i>
-                    </div>
-                    <h3>Frameworks & Libraries</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">ASP.NET Core 8</span>
-                        <span class="skill-tag">Flutter 3.x</span>
-                        <span class="skill-tag">React Native</span>
-                        <span class="skill-tag">Bootstrap 5</span>
-                        <span class="skill-tag">Entity Framework</span>
-                    </div>
+
+                <div class="tech-badge badge-1">
+                    <i class="fas fa-mobile-alt"></i> Flutter
                 </div>
-                
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-database"></i>
-                    </div>
-                    <h3>Backend & Databases</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Firebase</span>
-                        <span class="skill-tag">Supabase</span>
-                        <span class="skill-tag">SQL Server</span>
-                        <span class="skill-tag">RESTful APIs</span>
-                        <span class="skill-tag">Firestore</span>
-                    </div>
+                <div class="tech-badge badge-2">
+                    <i class="fas fa-code"></i> ASP.NET Core
                 </div>
-                
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-tools"></i>
-                    </div>
-                    <h3>Tools & Design</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Git & GitHub</span>
-                        <span class="skill-tag">Figma</span>
-                        <span class="skill-tag">Photoshop</span>
-                        <span class="skill-tag">Illustrator</span>
-                        <span class="skill-tag">WordPress</span>
-                    </div>
+                <div class="tech-badge badge-3">
+                    <i class="fas fa-database"></i> Firebase
                 </div>
+                <div class="tech-badge badge-4">
+                    <i class="fab fa-wordpress"></i> WordPress
+                </div>
+
+               
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="section projects-section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">My Work</span>
-                <h2 class="section-title">Featured Projects</h2>
-                <p class="section-description">
-                    A showcase of my best work - from enterprise web applications to innovative mobile solutions
-                </p>
-            </div>
-            
-            <div class="projects-grid" id="projectsGrid">
-                <!-- Projects will be dynamically loaded here -->
-            </div>
+<!-- ABOUT SECTION -->
+<section id="about">
+    <div class="container">
+        <div class="reveal">
+            <span class="section-tag">Get To Know Me</span>
+            <h2 class="section-title">About Me</h2>
         </div>
-    </section>
 
-    <!-- Project Modal -->
-    <div id="projectModal" class="project-modal">
-        <div class="modal-overlay"></div>
-        <div class="modal-container">
-            <button class="modal-close" id="modalClose">
-                <i class="fas fa-times"></i>
-            </button>
-            
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 id="modalTitle"></h2>
-                    <div class="modal-category" id="modalCategory"></div>
-                </div>
-                
-                <div class="modal-body">
-                    <!-- Screenshot Gallery -->
-                    <div class="screenshot-gallery">
-                        <div class="main-screenshot">
-                            <img id="mainScreenshot" src="" alt="Project screenshot">
-                        </div>
-                        <div class="thumbnail-gallery" id="thumbnailGallery">
-                            <!-- Thumbnails will be loaded here -->
-                        </div>
-                    </div>
-                    
-                    <!-- Project Details -->
-                    <div class="project-details">
-                        <div class="detail-section">
-                            <h3><i class="fas fa-bullseye"></i> Purpose</h3>
-                            <p id="modalPurpose"></p>
-                        </div>
-                        
-                        <div class="detail-section">
-                            <h3><i class="fas fa-exclamation-triangle"></i> Problem Solved</h3>
-                            <p id="modalProblem"></p>
-                        </div>
-                        
-                        <div class="detail-section">
-                            <h3><i class="fas fa-chart-line"></i> Impact</h3>
-                            <p id="modalImpact"></p>
-                        </div>
-                        
-                        <div class="detail-section">
-                            <h3><i class="fas fa-users"></i> Who It Helped</h3>
-                            <p id="modalBeneficiaries"></p>
-                        </div>
-                        
-                        <div class="detail-section">
-                            <h3><i class="fas fa-star"></i> Key Features</h3>
-                            <ul id="modalFeatures"></ul>
-                        </div>
-                        
-                        <div class="detail-section">
-                            <h3><i class="fas fa-code"></i> Technologies Used</h3>
-                            <div class="tech-stack" id="modalTechStack"></div>
-                        </div>
+        <div class="about-layout">
+            <div class="about-text reveal">
+                <p>I'm a results-driven Information Technology graduate from the <strong>Central University of Technology</strong> with a proven track record of delivering scalable, user-focused solutions.</p>
+                <p>I specialize in full-stack web development using <strong>ASP.NET Core</strong> and mobile app development with <strong>Flutter</strong>, always focusing on clean code and exceptional user experience. Whether working solo or in a team, I bring the same passion and precision to every project.</p>
+
+                <div class="about-highlights" id="aboutHighlights"></div>
+
+                <div class="about-edu">
+                    <div class="edu-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div>
+                        <h4>Central University of Technology</h4>
+                        <p>Information Technology Graduate · Bloemfontein, South Africa</p>
                     </div>
                 </div>
-                
-                <div class="modal-footer">
-                    <a href="#" id="modalGitHub" class="btn btn-primary" target="_blank">
-                        <i class="fab fa-github"></i>
-                        <span>View on GitHub</span>
-                    </a>
-                    <button class="btn btn-outline modal-close-btn">Close</button>
+            </div>
+
+            <div class="about-right reveal">
+                <div class="about-numbers" id="aboutNumbers"></div>
+
+                <div class="about-goals">
+                    <h3>What I'm looking for</h3>
+                    <p>I'm passionate about joining a forward-thinking team where I can contribute meaningfully, continue growing as a developer, and help build products that make a real difference for users.</p>
+                    <div class="about-tags" id="aboutTags"></div>
                 </div>
             </div>
         </div>
     </div>
+</section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="section experience-section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Career Journey</span>
-                <h2 class="section-title">Work Experience</h2>
+<!-- SKILLS SECTION -->
+<section id="skills">
+    <div class="container">
+        <div class="reveal" style="text-align: center;">
+            <span class="section-tag">My Expertise</span>
+            <h2 class="section-title">Technical Skills</h2>
+        </div>
+
+        <div class="skills-layout" id="skillsGrid"></div>
+
+        <!-- Proficiency bars -->
+        <div class="proficiency-card reveal" id="proficiencySection">
+            <h3>Core Proficiency</h3>
+            <div class="skill-bar-list" id="skillBars"></div>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECTS SECTION -->
+<section id="projects">
+    <div class="container">
+        <div class="reveal">
+            <span class="section-tag">My Work</span>
+            <h2 class="section-title">Featured Projects</h2>
+            <p class="section-desc">A showcase of my best work — from enterprise web applications to innovative mobile solutions.</p>
+        </div>
+
+        <div class="projects-grid" id="projectsGrid"></div>
+    </div>
+</section>
+
+<!-- PROJECT MODAL -->
+<div class="project-modal" id="projectModal">
+    <div class="modal-overlay"></div>
+    <div class="modal-container">
+        <button class="modal-close" id="modalClose">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle"></h2>
+                <span class="modal-category" id="modalCategory"></span>
             </div>
-            
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">Jan 2023 - Jan 2025</span>
-                        <h3>Standard Developer</h3>
-                        <h4>Martelo Digital</h4>
-                        <p>Developed and maintained business websites using WordPress, creating responsive layouts and custom themes for diverse client requirements.</p>
-                        <ul>
-                            <li>Built 10+ custom WordPress websites</li>
-                            <li>Optimized site performance and SEO</li>
-                            <li>Maintained ongoing client relationships</li>
-                        </ul>
+            <div class="modal-body">
+                <div class="modal-gallery">
+                    <div class="modal-main-image">
+                        <img id="modalMainImage" src="" alt="Project screenshot">
+                    </div>
+                    <div class="modal-thumbnails" id="modalThumbnails"></div>
+                </div>
+                <div class="modal-info">
+                    <div class="modal-section">
+                        <h3><i class="fas fa-bullseye"></i> Purpose</h3>
+                        <p id="modalPurpose"></p>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-exclamation-triangle"></i> Problem</h3>
+                        <p id="modalProblem"></p>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-chart-line"></i> Impact</h3>
+                        <p id="modalImpact"></p>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-users"></i> Beneficiaries</h3>
+                        <p id="modalBeneficiaries"></p>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-star"></i> Features</h3>
+                        <ul id="modalFeatures"></ul>
+                    </div>
+                    <div class="modal-section">
+                        <h3><i class="fas fa-code"></i> Technologies</h3>
+                        <div class="modal-tech" id="modalTech"></div>
                     </div>
                 </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">Mar 2024 - Oct 2024</span>
-                        <h3>Student Lab Assistant</h3>
-                        <h4>Central University of Technology</h4>
-                        <p>Assisted students with debugging and completing programming projects, supporting practical learning in C# and ASP.NET Core.</p>
-                        <ul>
-                            <li>Guided 50+ students through coding challenges</li>
-                            <li>Provided technical support for lab equipment</li>
-                            <li>Helped students understand programming concepts</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">Freelance</span>
-                        <h3>WordPress Designer & Developer</h3>
-                        <h4>Self-Employed</h4>
-                        <p>Created custom WordPress solutions for small businesses, focusing on responsive design and user experience.</p>
-                        <ul>
-                            <li>Delivered projects on time and within budget</li>
-                            <li>Customized themes and plugins</li>
-                            <li>Provided ongoing maintenance and support</li>
-                        </ul>
-                    </div>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" id="modalGitHub" class="btn-primary" target="_blank">
+                    <i class="fab fa-github"></i> View on GitHub
+                </a>
+                <button class="modal-close-btn btn-ghost">Close</button>
             </div>
         </div>
-    </section>
+    </div>
+</div>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section contact-section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Get In Touch</span>
-                <h2 class="section-title">Let's Work Together</h2>
-                <p class="section-description">
-                    Have a project in mind? Let's discuss how I can help bring your ideas to life
-                </p>
+<!-- EXPERIENCE SECTION -->
+<section id="experience">
+    <div class="container">
+        <div class="reveal">
+            <span class="section-tag">Career Journey</span>
+            <h2 class="section-title">Work Experience</h2>
+        </div>
+
+        <div class="exp-layout">
+            <div class="exp-tabs" id="expTabs"></div>
+            <div class="exp-details" id="expDetails"></div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section id="contact">
+    <div class="container">
+        <div class="reveal">
+            <span class="section-tag">Get In Touch</span>
+            <h2 class="section-title">Let's Work Together</h2>
+            <p class="section-desc">Have a project in mind? Let's discuss how I can help bring your ideas to life.</p>
+        </div>
+
+        <div class="contact-layout">
+            <div class="reveal">
+                <div class="contact-info-stack" id="contactInfo"></div>
+                <div class="contact-socials" id="contactSocials"></div>
             </div>
-            
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <h3>Location</h3>
-                        <p>Bloemfontein, South Africa</p>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <h3>Email</h3>
-                        <p>princepromisesemosa@gmail.com</p>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <h3>Phone</h3>
-                        <p>+27 60 834 1700</p>
-                    </div>
-                    
-                    <div class="contact-social">
-                        <a href="https://github.com/princepro-cr" target="_blank" class="social-btn">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://linkedin.com/in/prince-promise-semosa-abb88832b" target="_blank" class="social-btn">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="mailto:princepromisesemosa@gmail.com" class="social-btn">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="contact-form-wrapper">
-                    <form id="contactForm" class="contact-form">
+
+            <div class="contact-form reveal">
+                <form id="contactForm">
+                    <div class="form-row">
                         <div class="form-group">
-                            <input type="text" id="name" placeholder="Your Name" required>
-                            <label for="name">Name</label>
+                            <label>Name</label>
+                            <input type="text" id="contactName" placeholder="Your name" required>
                         </div>
-                        
                         <div class="form-group">
-                            <input type="email" id="email" placeholder="Your Email" required>
-                            <label for="email">Email</label>
+                            <label>Email</label>
+                            <input type="email" id="contactEmail" placeholder="your@email.com" required>
                         </div>
-                        
-                        <div class="form-group">
-                            <input type="text" id="subject" placeholder="Subject" required>
-                            <label for="subject">Subject</label>
-                        </div>
-                        
-                        <div class="form-group">
-                            <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
-                            <label for="message">Message</label>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary btn-block">
-                            <span>Send Message</span>
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </form>
-                </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Subject</label>
+                        <input type="text" id="contactSubject" placeholder="What's this about?" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea id="contactMessage" placeholder="Tell me about your project..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">
+                        <i class="fas fa-paper-plane"></i>
+                        Send Message
+                    </button>
+                </form>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <h3>Promise Semosa</h3>
-                    <p>Full-Stack & Mobile Developer</p>
-                </div>
-                
-                <div class="footer-links">
-                    <a href="#home">Home</a>
-                    <a href="#about">About</a>
-                    <a href="#projects">Projects</a>
-                    <a href="#contact">Contact</a>
-                </div>
-                
-                <div class="footer-social">
-                    <a href="https://github.com/princepro-cr" target="_blank">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://linkedin.com/in/prince-promise-semosa-abb88832b" target="_blank">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="mailto:princepromisesemosa@gmail.com">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2026 Promise Semosa. All rights reserved.</p>
-            </div>
-        </div>a
-    </footer>
+<!-- FOOTER -->
+<footer>
+    <a href="#home" class="footer-logo">Promise.</a>
+    <p>© <span id="currentYear">2026</span> Promise Semosa. All rights reserved.</p>
+    <div class="footer-social">
+        <a href="https://github.com/princepro-cr" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://linkedin.com/in/prince-promise-semosa-abb88832b" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+</footer>
 
-    <!-- Back to Top Button -->
-    <button class="back-to-top" id="backToTop">
-        <i class="fas fa-arrow-up"></i>
-    </button>
+<!-- BACK TO TOP BUTTON -->
+<button class="btt" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+</button>
 
-    <!-- Custom JavaScript -->
-    <script src="js/projects-data.js"></script>
-    <script src="js/main.js"></script>
+<!-- JavaScript Files -->
+<script src="js/projects-data.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
