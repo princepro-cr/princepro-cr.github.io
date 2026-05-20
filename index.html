@@ -4,21 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Promise Semosa — Full-Stack Developer</title>
-    
-    <!-- Fonts -->
+
+    <!-- Fonts (same as original) -->
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
-    
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Custom CSS -->
+
+    <!-- Your original CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <!-- NAVIGATION -->
 <nav id="navbar">
-    <a href="#home" class="nav-logo">Promise  <span>.</span></a>
+    <a href="#home" class="nav-logo">Promise <span>.</span></a>
     <ul class="nav-links">
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About</a></li>
@@ -27,6 +27,9 @@
         <li><a href="#experience">Experience</a></li>
         <li><a href="#contact" class="nav-cta">Let's Talk</a></li>
     </ul>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+        <span></span><span></span><span></span>
+    </button>
 </nav>
 
 <!-- HERO SECTION -->
@@ -45,7 +48,7 @@
             </h1>
 
             <div class="hero-role">
-                <span class="role-highlight">Full-Stack</span> & Mobile Developer
+                <span class="role-highlight">Full-Stack</span> &amp; Mobile Developer
             </div>
 
             <p class="hero-desc">
@@ -62,13 +65,13 @@
             </div>
 
             <div class="hero-socials">
-                <a href="https://github.com/princepro-cr" class="social-icon" target="_blank">
+                <a href="https://github.com/princepro-cr" class="social-icon" target="_blank" aria-label="GitHub">
                     <i class="fab fa-github"></i>
                 </a>
-                <a href="https://linkedin.com/in/prince-promise-semosa-abb88832b" class="social-icon" target="_blank">
+                <a href="https://linkedin.com/in/prince-promise-semosa-abb88832b" class="social-icon" target="_blank" aria-label="LinkedIn">
                     <i class="fab fa-linkedin-in"></i>
                 </a>
-                <a href="mailto:princepromisesemosa@gmail.com" class="social-icon">
+                <a href="mailto:princepromisesemosa@gmail.com" class="social-icon" aria-label="Email">
                     <i class="fas fa-envelope"></i>
                 </a>
             </div>
@@ -78,8 +81,8 @@
             <div class="profile-frame">
                 <div class="profile-card-main">
                     <div class="profile-img-placeholder" id="profileContainer">
-                        <!-- This will try to load your image, and show icon if it fails -->
-                        <img src="images/profile.jpg" alt="Promise Semosa" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-user\'></i><span>Promise Semosa</span>'">
+                        <img src="images/profile.jpg" alt="Promise Semosa"
+                             onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-user\'></i><span>Promise Semosa</span>'">
                     </div>
                 </div>
 
@@ -95,8 +98,6 @@
                 <div class="tech-badge badge-4">
                     <i class="fab fa-wordpress"></i> WordPress
                 </div>
-
-               
             </div>
         </div>
     </div>
@@ -112,8 +113,8 @@
 
         <div class="about-layout">
             <div class="about-text reveal">
-                <p>I'm a results-driven Information Technology graduate from the <strong>Central University of Technology</strong> with a proven track record of delivering scalable, user-focused solutions.</p>
-                <p>I specialize in full-stack web development using <strong>ASP.NET Core</strong> and mobile app development with <strong>Flutter</strong>, always focusing on clean code and exceptional user experience. Whether working solo or in a team, I bring the same passion and precision to every project.</p>
+                <p>I'm a results-driven Information Technology graduate from the <strong>Central University of Technology</strong>, graduated <strong>cum laude</strong>, with a proven track record of delivering scalable, user-focused solutions.</p>
+                <p>I specialize in full-stack web development using <strong>ASP.NET Core</strong> and mobile app development with <strong>Flutter</strong>, always focusing on clean code and exceptional user experience. Proficient across the full software development lifecycle — from UI/UX design and architecture through to cloud deployment, quality assurance, and technical support.</p>
 
                 <div class="about-highlights" id="aboutHighlights"></div>
 
@@ -121,7 +122,7 @@
                     <div class="edu-icon"><i class="fas fa-graduation-cap"></i></div>
                     <div>
                         <h4>Central University of Technology</h4>
-                        <p>Information Technology Graduate · Bloemfontein, South Africa</p>
+                        <p>Diploma in Information Technology (Cum Laude) · Graduated March 2026 · Bloemfontein, South Africa</p>
                     </div>
                 </div>
             </div>
@@ -149,7 +150,6 @@
 
         <div class="skills-layout" id="skillsGrid"></div>
 
-        <!-- Proficiency bars -->
         <div class="proficiency-card reveal" id="proficiencySection">
             <h3>Core Proficiency</h3>
             <div class="skill-bar-list" id="skillBars"></div>
@@ -291,18 +291,267 @@
     <a href="#home" class="footer-logo">Promise.</a>
     <p>© <span id="currentYear">2026</span> Promise Semosa. All rights reserved.</p>
     <div class="footer-social">
-        <a href="https://github.com/princepro-cr" target="_blank"><i class="fab fa-github"></i></a>
-        <a href="https://linkedin.com/in/prince-promise-semosa-abb88832b" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/princepro-cr" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://linkedin.com/in/prince-promise-semosa-abb88832b" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
     </div>
 </footer>
 
-<!-- BACK TO TOP BUTTON -->
-<button class="btt" id="backToTop">
+<!-- BACK TO TOP -->
+<button class="btt" id="backToTop" aria-label="Back to top">
     <i class="fas fa-arrow-up"></i>
 </button>
 
 <!-- JavaScript Files -->
 <script src="js/projects-data.js"></script>
 <script src="js/main.js"></script>
+
+<!-- ── CV DATA PATCH ──────────────────────────────────────────────
+     This script runs AFTER main.js and injects the correct CV data
+     into every element that main.js populates dynamically.
+     It overwrites whatever placeholder data main.js may set.
+──────────────────────────────────────────────────────────────── -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    /* ── 1. ABOUT HIGHLIGHTS ── */
+    const highlightsData = [
+        { icon: 'fas fa-layer-group', title: 'Full-Stack Development', desc: 'ASP.NET Core MVC · Flutter · Firebase · Supabase' },
+        { icon: 'fas fa-mobile-alt',  title: 'Mobile Development',     desc: 'Flutter · React Native (Expo) · Android Studio' },
+        { icon: 'fas fa-paint-brush', title: 'UI/UX & Design',         desc: 'Figma · Adobe Photoshop · Adobe Illustrator' },
+        { icon: 'fas fa-shield-alt',  title: 'Security & Ethics',      desc: 'Information Security Fundamentals · Ethical Computing' }
+    ];
+    const highlightsEl = document.getElementById('aboutHighlights');
+    if (highlightsEl) {
+        highlightsEl.innerHTML = highlightsData.map(h => `
+            <div class="highlight-card">
+                <div class="highlight-icon"><i class="${h.icon}"></i></div>
+                <h4>${h.title}</h4>
+                <p>${h.desc}</p>
+            </div>`).join('');
+    }
+
+    /* ── 2. ABOUT NUMBERS ── */
+    const numbersData = [
+        { value: '4+',  label: 'Projects' },
+        { value: '2+',  label: 'Years Exp.' },
+        { value: '5+',  label: 'Clients' }
+    ];
+    const numbersEl = document.getElementById('aboutNumbers');
+    if (numbersEl) {
+        numbersEl.innerHTML = numbersData.map(n => `
+            <div class="num-item">
+                <strong>${n.value}</strong>
+                <span>${n.label}</span>
+            </div>`).join('');
+    }
+
+    /* ── 3. ABOUT TAGS ── */
+    const tagsData = [
+        'Full-Stack Roles', 'Mobile Development', 'Agile Teams',
+        'Remote / Hybrid', 'Software Engineer', 'Graduate Position'
+    ];
+    const tagsEl = document.getElementById('aboutTags');
+    if (tagsEl) {
+        tagsEl.innerHTML = tagsData.map(t => `<span class="skill-chip">${t}</span>`).join('');
+    }
+
+    /* ── 4. SKILLS GRID ── */
+    const skillCategories = [
+        {
+            icon: 'fas fa-code',
+            title: 'Languages',
+            skills: ['C#', 'Dart', 'JavaScript', 'HTML5', 'CSS3', 'Oracle SQL']
+        },
+        {
+            icon: 'fas fa-layer-group',
+            title: 'Frameworks & Platforms',
+            skills: ['ASP.NET Core MVC', 'Flutter', 'React Native (Expo)', 'Firebase', 'Supabase', 'REST APIs']
+        },
+        {
+            icon: 'fas fa-globe',
+            title: 'CMS & Web',
+            skills: ['WordPress', 'Theme Customisation', 'Plugin Management', 'Basic SEO', 'Responsive Design']
+        },
+        {
+            icon: 'fas fa-tools',
+            title: 'Dev Tools & Design',
+            skills: ['Git', 'GitHub', 'Visual Studio', 'VS Code', 'Android Studio', 'Figma', 'Adobe Photoshop', 'Adobe Illustrator']
+        },
+        {
+            icon: 'fas fa-tasks',
+            title: 'Engineering Practices',
+            skills: ['Agile / Scrum', 'Sprint Planning', 'Project Documentation', 'Risk Management', 'Quality Assurance', 'SOLID Principles', 'Design Patterns', 'Full SDLC']
+        },
+        {
+            icon: 'fas fa-wrench',
+            title: 'Technical Support',
+            skills: ['Hardware Diagnostics', 'System Troubleshooting', 'IT Technician', 'End-User Support', 'Hardware Repair']
+        }
+    ];
+
+    const skillsGridEl = document.getElementById('skillsGrid');
+    if (skillsGridEl) {
+        skillsGridEl.innerHTML = skillCategories.map(cat => `
+            <div class="skill-category reveal">
+                <div class="skill-cat-header">
+                    <div class="skill-cat-icon"><i class="${cat.icon}"></i></div>
+                    <h3>${cat.title}</h3>
+                </div>
+                <div class="skill-list">
+                    ${cat.skills.map(s => `<span class="skill-chip">${s}</span>`).join('')}
+                </div>
+            </div>`).join('');
+    }
+
+    /* ── 5. SKILL BARS ── */
+    const barsData = [
+        { name: 'ASP.NET Core MVC',  pct: 88 },
+        { name: 'Flutter / Dart',    pct: 85 },
+        { name: 'C#',                pct: 87 },
+        { name: 'Firebase / Supabase', pct: 80 },
+        { name: 'JavaScript / HTML / CSS', pct: 82 },
+        { name: 'WordPress',         pct: 90 },
+        { name: 'Figma / Design',    pct: 75 },
+        { name: 'Oracle SQL',        pct: 78 }
+    ];
+
+    const skillBarsEl = document.getElementById('skillBars');
+    if (skillBarsEl) {
+        skillBarsEl.innerHTML = barsData.map(b => `
+            <div class="skill-bar-item">
+                <div class="skill-bar-info">
+                    <span>${b.name}</span>
+                    <strong>${b.pct}%</strong>
+                </div>
+                <div class="skill-bar-track">
+                    <div class="skill-bar-fill" data-width="${b.pct}"></div>
+                </div>
+            </div>`).join('');
+
+        // Animate bars when visible
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+                        bar.style.width = bar.dataset.width + '%';
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        observer.observe(skillBarsEl);
+    }
+
+    /* ── 6. EXPERIENCE ── */
+    const experienceData = [
+        {
+            id: 'martello',
+            company: 'Martello Company',
+            role: 'Web Developer',
+            period: 'Jan 2023 – Jan 2025',
+            type: 'Contract',
+            summary: 'Designed and delivered full WordPress websites for SME clients, handling everything from initial design through to deployment, SEO optimisation, and ongoing maintenance.',
+            bullets: [
+                'Designed and delivered 5+ responsive WordPress websites for small and medium-sized businesses.',
+                'Improved site performance, usability, and search engine visibility through theme customisation and optimisation.',
+                'Managed ongoing maintenance, plugin updates, and backups to ensure maximum client uptime.',
+                'Collaborated directly with clients to translate business requirements into polished, functional websites.'
+            ]
+        },
+        {
+            id: 'lab',
+            company: 'Central University of Technology',
+            role: 'Student Lab Assistant',
+            period: 'Mar 2025 – Oct 2025',
+            type: 'Part-Time',
+            summary: 'Supported students in programming modules, facilitating lab sessions and providing targeted academic assistance that contributed to improved pass rates.',
+            bullets: [
+                'Assisted 30+ students per week with C# programming and ASP.NET Core concepts.',
+                'Facilitated hands-on lab sessions and explained complex programming principles clearly.',
+                'Contributed to an improved module pass rate through targeted one-on-one academic support.',
+                'Collaborated with lecturers to identify common student challenges and address them proactively.'
+            ]
+        }
+    ];
+
+    const expTabsEl  = document.getElementById('expTabs');
+    const expDetailsEl = document.getElementById('expDetails');
+
+    if (expTabsEl && expDetailsEl) {
+        expTabsEl.innerHTML = experienceData.map((exp, i) => `
+            <div class="exp-tab${i === 0 ? ' active' : ''}" data-exp="${exp.id}">
+                <h4>${exp.role}</h4>
+                <p>${exp.company}</p>
+                <span>${exp.period}</span>
+            </div>`).join('');
+
+        expDetailsEl.innerHTML = experienceData.map((exp, i) => `
+            <div class="exp-detail${i === 0 ? ' active' : ''}" id="exp-${exp.id}">
+                <div class="exp-detail-header">
+                    <h3>${exp.role}</h3>
+                    <p class="company">${exp.company}</p>
+                    <p class="period">${exp.period} · ${exp.type}</p>
+                </div>
+                <div class="exp-detail-body">
+                    <p>${exp.summary}</p>
+                    <ul class="exp-bullets">
+                        ${exp.bullets.map(b => `<li>${b}</li>`).join('')}
+                    </ul>
+                </div>
+            </div>`).join('');
+
+        // Tab switching
+        expTabsEl.querySelectorAll('.exp-tab').forEach(tab => {
+            tab.addEventListener('click', function () {
+                expTabsEl.querySelectorAll('.exp-tab').forEach(t => t.classList.remove('active'));
+                expDetailsEl.querySelectorAll('.exp-detail').forEach(d => d.classList.remove('active'));
+                this.classList.add('active');
+                document.getElementById('exp-' + this.dataset.exp).classList.add('active');
+            });
+        });
+    }
+
+    /* ── 7. CONTACT INFO ── */
+    const contactItems = [
+        { icon: 'fas fa-envelope', label: 'Email',    value: 'princepromisesemosa@gmail.com' },
+        { icon: 'fas fa-phone',    label: 'Phone',    value: '+27 60 834 1700' },
+        { icon: 'fas fa-map-marker-alt', label: 'Location', value: 'Pretoria, South Africa' }
+    ];
+    const contactInfoEl = document.getElementById('contactInfo');
+    if (contactInfoEl) {
+        contactInfoEl.innerHTML = contactItems.map(item => `
+            <div class="contact-info-item">
+                <div class="contact-info-icon"><i class="${item.icon}"></i></div>
+                <div>
+                    <h4>${item.label}</h4>
+                    <p>${item.value}</p>
+                </div>
+            </div>`).join('');
+    }
+
+    const contactSocialsEl = document.getElementById('contactSocials');
+    if (contactSocialsEl) {
+        contactSocialsEl.innerHTML = `
+            <a href="https://github.com/princepro-cr" class="contact-social-btn" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/prince-promise-semosa-abb88832b" class="contact-social-btn" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="mailto:princepromisesemosa@gmail.com" class="contact-social-btn" aria-label="Email"><i class="fas fa-envelope"></i></a>`;
+    }
+
+    /* ── 8. FOOTER YEAR ── */
+    const yearEl = document.getElementById('currentYear');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    /* ── 9. RE-TRIGGER REVEAL for dynamically injected cards ── */
+    setTimeout(() => {
+        document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight * 0.92) {
+                el.classList.add('visible');
+            }
+        });
+    }, 100);
+});
+</script>
+
 </body>
 </html>
