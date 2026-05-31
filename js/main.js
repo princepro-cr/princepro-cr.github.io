@@ -281,7 +281,9 @@ function getProjectFolder(title) {
         'LeavePulse - Leave Management': 'leavepulse',
         'Lottery Mobile Application': 'lottery',
         'WordPress Business Websites': 'wordpress',
-        'SkyScan - Modern Weather App': 'skyscan'
+        'SkyScan - Modern Weather App': 'skyscan',
+        'Zone-Runner - 2D Platformer Game': 'Zonerunner'
+
     };
     return folderMap[title] || null;
 }

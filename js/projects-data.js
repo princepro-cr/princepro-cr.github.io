@@ -159,5 +159,36 @@ const projectsData = [
         ],
         technologies: ['Flutter 3.x', 'Dart', 'OpenWeather API', 'HTTP Package', 'MVVM Architecture'],
         github: 'https://github.com/princepro-cr/SkyScan'
+    },
+    {
+        id: 8,
+        title: 'Zone-Runner - 2D Platformer Game',
+        category: 'Game Development',
+        purpose: 'To create an engaging 2D platformer game that challenges players to navigate different zones, collect coins, and survive increasingly difficult levels.',
+        problem: 'Many beginner platformer games lack progression, varied environments, and rewarding gameplay mechanics that keep players engaged.',
+        impact: 'Successfully developed a fully playable Unity game featuring multiple themed zones, collectible systems, player progression, and obstacle-based challenges.',
+        beneficiaries: 'Casual gamers, students learning game development concepts, and players who enjoy platform and adventure games.',
+        features: [
+            '2D side-scrolling platformer gameplay',
+            'Coin collection and scoring system',
+            'Multiple themed environments and zones',
+            'Player lives and health management',
+            'Obstacle and hazard avoidance',
+            'Level progression with increasing difficulty',
+            'Character movement and jumping mechanics',
+            'Real-time score tracking',
+            'Interactive game objects and platforms',
+            'User-friendly game interface'
+        ],
+        technologies: [
+            'Unity',
+            'C#',
+            'Unity Physics Engine',
+            'Sprite Animation',
+            'Tilemaps',
+            'Unity UI',
+            'Visual Studio'
+        ],
+        github: 'https://github.com/princepro-cr/Unity_2D-Fundamentals'
     }
 ];
