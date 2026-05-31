@@ -1,17 +1,19 @@
 // ============================================
-// MAIN JAVASCRIPT FILE - UPDATED WITH BETTER IMAGE HANDLING
+// DOM ELEMENTS
 // ============================================
-
-// DOM Elements
 const navbar = document.getElementById('navbar');
 const backToTop = document.getElementById('backToTop');
 const currentYearSpan = document.getElementById('currentYear');
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+const navOverlay = document.getElementById('navOverlay');
 
 // ============================================
-// Initialize on DOM Load
+// INITIALIZE
 // ============================================
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     initializePortfolio();
+    initCustomCursor();
 });
 
 function initializePortfolio() {
@@ -19,6 +21,7 @@ function initializePortfolio() {
     loadSkills();
     loadProjects();
     loadExperience();
+    loadCertifications();
     loadContactInfo();
     setupEventListeners();
     updateCopyrightYear();
@@ -26,19 +29,81 @@ function initializePortfolio() {
 }
 
 // ============================================
-// Load About Section Content
+// MOBILE NAV
+// ============================================
+function toggleMenu() {
+    const isOpen = navLinks.classList.contains('open');
+    if (isOpen) {
+        closeMenu();
+    } else {
+        navLinks.classList.add('open');
+        menuToggle.classList.add('open');
+        navOverlay.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeMenu() {
+    navLinks.classList.remove('open');
+    menuToggle.classList.remove('open');
+    navOverlay.classList.remove('show');
+    document.body.style.overflow = '';
+}
+
+// Expose for onclick attributes
+window.toggleMenu = toggleMenu;
+window.closeMenu = closeMenu;
+
+// ============================================
+// CUSTOM CURSOR
+// ============================================
+function initCustomCursor() {
+    const dot = document.getElementById('cursorDot');
+    const ring = document.getElementById('cursorRing');
+    if (!dot || !ring) return;
+
+    let ringX = 0, ringY = 0, dotX = 0, dotY = 0;
+
+    document.addEventListener('mousemove', e => {
+        dotX = e.clientX;
+        dotY = e.clientY;
+        dot.style.transform = `translate(${dotX - 3}px, ${dotY - 3}px)`;
+    });
+
+    function animateRing() {
+        ringX += (dotX - ringX) * 0.12;
+        ringY += (dotY - ringY) * 0.12;
+        ring.style.transform = `translate(${ringX - 16}px, ${ringY - 16}px)`;
+        requestAnimationFrame(animateRing);
+    }
+    animateRing();
+
+    document.addEventListener('mouseenter', e => {
+        if (e.target.closest && e.target.closest('a, button, .project-card, .exp-tab, .skill-chip, .cert-card')) {
+            ring.classList.add('hovering');
+        }
+    }, true);
+
+    document.addEventListener('mouseleave', e => {
+        if (e.target.closest && e.target.closest('a, button, .project-card, .exp-tab, .skill-chip, .cert-card')) {
+            ring.classList.remove('hovering');
+        }
+    }, true);
+}
+
+// ============================================
+// ABOUT SECTION
 // ============================================
 function loadAboutContent() {
-    // About Highlights
     const highlightsContainer = document.getElementById('aboutHighlights');
     if (highlightsContainer) {
         const highlights = [
-            { icon: 'fa-code', title: 'Clean Code', desc: 'Maintainable & scalable solutions' },
+            { icon: 'fa-shield-alt', title: 'Security-First', desc: 'JWT, RBAC & input validation built-in' },
             { icon: 'fa-lightbulb', title: 'Problem Solver', desc: 'Turning challenges into opportunities' },
-            { icon: 'fa-users', title: 'Team Player', desc: 'Collaborating for better outcomes' },
+            { icon: 'fa-users', title: 'Team Player', desc: 'Agile/Scrum collaborator' },
             { icon: 'fa-rocket', title: 'Fast Learner', desc: 'Adapting to new technologies quickly' }
         ];
-        
+
         highlights.forEach(item => {
             const card = document.createElement('div');
             card.className = 'highlight-card';
@@ -51,15 +116,13 @@ function loadAboutContent() {
         });
     }
 
-    // About Numbers
     const numbersContainer = document.getElementById('aboutNumbers');
     if (numbersContainer) {
         const numbers = [
-            { num: '8+', label: 'Projects' },
-            { num: '2+', label: 'Years Exp' },
+            { num: '10+', label: 'Projects' },
+            { num: '3+', label: 'Years Exp' },
             { num: '50+', label: 'Students' }
         ];
-        
         numbersContainer.innerHTML = numbers.map(item => `
             <div class="num-item">
                 <strong>${item.num}</strong>
@@ -68,16 +131,15 @@ function loadAboutContent() {
         `).join('');
     }
 
-    // About Tags
     const tagsContainer = document.getElementById('aboutTags');
     if (tagsContainer) {
-        const tags = ['Full-Stack Roles', 'Mobile Development', 'Remote / Hybrid', 'South Africa'];
+        const tags = ['Full-Stack Roles', 'Mobile Development', 'Remote / Hybrid', 'South Africa', 'Open to Relocation'];
         tagsContainer.innerHTML = tags.map(tag => `<span class="skill-chip">${tag}</span>`).join('');
     }
 }
 
 // ============================================
-// Load Skills Section
+// SKILLS SECTION
 // ============================================
 function loadSkills() {
     const skillsGrid = document.getElementById('skillsGrid');
@@ -87,22 +149,32 @@ function loadSkills() {
         {
             icon: 'fa-mobile-alt',
             title: 'Mobile Development',
-            skills: ['Flutter 3.x', 'Dart', 'Firebase', 'Audio Service', 'Local Storage', 'Push Notifications']
+            skills: ['Flutter 3.x', 'Dart', 'React Native', 'Firebase', 'Audio Service', 'Push Notifications', 'Local Storage']
         },
         {
             icon: 'fa-server',
             title: 'Backend & APIs',
-            skills: ['C#', 'ASP.NET Core 8', 'Entity Framework Core', 'RESTful APIs', 'MVC Pattern', 'LINQ']
+            skills: ['C#', 'ASP.NET Core 8', 'Entity Framework Core', 'RESTful APIs', 'MVC Pattern', 'LINQ', 'JWT Auth', 'RBAC']
         },
         {
             icon: 'fa-database',
             title: 'Databases',
-            skills: ['SQL Server', 'MySQL', 'Firebase Firestore', 'Supabase', 'Entity Framework']
+            skills: ['Oracle SQL', 'SQL Server', 'PostgreSQL', 'MySQL', 'Firebase Firestore', 'Supabase', 'NoSQL', 'Schema Design']
         },
         {
             icon: 'fa-globe',
             title: 'Web Technologies',
-            skills: ['HTML5', 'CSS3', 'JavaScript', 'Bootstrap 5', 'Material-UI', 'WordPress 6.x', 'PHP']
+            skills: ['HTML5', 'CSS3', 'JavaScript', 'TypeScript', 'Bootstrap 5', 'Material-UI', 'WordPress 6.x', 'PHP']
+        },
+        {
+            icon: 'fa-shield-alt',
+            title: 'Security & DevOps',
+            skills: ['JWT Token Management', 'Input Validation', 'Role-Based Access', 'Security Principles (ISC2)', 'QA Testing', 'CI/CD', 'Code Review']
+        },
+        {
+            icon: 'fa-tools',
+            title: 'Tools & Practices',
+            skills: ['Git & GitHub', 'Agile / Scrum', 'Sprint Planning', 'Technical Documentation', 'API Integration', 'Debugging', 'Architecture Design']
         }
     ];
 
@@ -121,15 +193,15 @@ function loadSkills() {
         skillsGrid.appendChild(categoryEl);
     });
 
-    // Proficiency Bars
     const skillBars = document.getElementById('skillBars');
     if (skillBars) {
         const proficiencies = [
             { name: 'C# / ASP.NET Core', percent: 88 },
             { name: 'Flutter / Dart', percent: 85 },
-            { name: 'HTML / CSS / JS', percent: 82 },
-            { name: 'SQL / Databases', percent: 80 },
-            { name: 'WordPress', percent: 90 }
+            { name: 'TypeScript / JavaScript', percent: 82 },
+            { name: 'Oracle SQL / PostgreSQL', percent: 80 },
+            { name: 'WordPress / PHP', percent: 90 },
+            { name: 'React Native', percent: 72 }
         ];
 
         proficiencies.forEach(item => {
@@ -150,40 +222,33 @@ function loadSkills() {
 }
 
 // ============================================
-// Load Projects - IMPROVED IMAGE HANDLING
+// PROJECTS
 // ============================================
 function loadProjects() {
     const projectsGrid = document.getElementById('projectsGrid');
     if (!projectsGrid) return;
 
-    // Clear any existing content
     projectsGrid.innerHTML = '';
 
-    // Use your actual projects data from projects-data.js
-    projectsData.forEach((project, index) => {
+    if (typeof projectsData === 'undefined') return;
+
+    projectsData.forEach((project) => {
         const card = document.createElement('div');
         card.className = 'project-card reveal';
-        
-        // Get project folder and thumbnail
+
         const projectFolder = getProjectFolder(project.title);
-        let imagePath = null;
-        
-        if (projectFolder) {
-            imagePath = getProjectThumbnail(project.title, projectFolder);
-        }
-        
-        // Get first three technologies for display
+        const imagePath = projectFolder ? `images/projects/${projectFolder}/screenshot1.jpg` : null;
         const techDisplay = project.technologies.slice(0, 3);
-        
+
         card.innerHTML = `
             <div class="project-thumb">
-                ${imagePath ? 
+                ${imagePath ?
                     `<img src="${imagePath}" 
                           alt="${project.title}"
                           loading="lazy"
-                          onload="this.style.opacity='1'"
-                          onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\'fas ${getProjectIcon(project.category)}\' style=\'opacity:0.35; font-size:4rem;\'></i>'">` : 
-                    `<i class="fas ${getProjectIcon(project.category)}" style="opacity:0.35; font-size:4rem;"></i>`
+                          onload="this.classList.add('loaded')"
+                          onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas ${getProjectIcon(project.category)}\' ></i>'">` :
+                    `<i class="fas ${getProjectIcon(project.category)}"></i>`
                 }
             </div>
             <div class="project-body">
@@ -191,40 +256,23 @@ function loadProjects() {
                     <span class="project-tag">${project.category}</span>
                 </div>
                 <h3>${project.title}</h3>
-                <p>${project.purpose.substring(0, 100)}${project.purpose.length > 100 ? '...' : ''}</p>
+                <p>${project.purpose.substring(0, 110)}${project.purpose.length > 110 ? '...' : ''}</p>
                 <div class="project-footer">
                     <div class="project-tech">
                         ${techDisplay.map(tech => `<span class="tech-dot" title="${tech}"></span>`).join('')}
                     </div>
-                    <a href="${project.github}" class="project-link" target="_blank">
+                    <a href="${project.github}" class="project-link" target="_blank" onclick="event.stopPropagation()">
                         View Code <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
             </div>
         `;
 
-        // Add click event for modal
         card.addEventListener('click', () => openProjectModal(project));
-
         projectsGrid.appendChild(card);
     });
 }
 
-// Helper function to get project thumbnail with fallback
-function getProjectThumbnail(title, folder) {
-    // Try different possible image names
-    const possibleImages = [
-        `images/projects/${folder}/screenshot1.jpg`,
-        `images/projects/${folder}/screenshot1.jpeg`,
-        `images/projects/${folder}/main.jpg`,
-        `images/projects/${folder}/profile.jpg`
-    ];
-    
-    // Return the first one (we'll let onerror handle fallbacks)
-    return possibleImages[0];
-}
-
-// Helper function to get project folder name from title
 function getProjectFolder(title) {
     const folderMap = {
         'ProjectX - Student & HR Portal': 'projectx',
@@ -233,13 +281,11 @@ function getProjectFolder(title) {
         'LeavePulse - Leave Management': 'leavepulse',
         'Lottery Mobile Application': 'lottery',
         'WordPress Business Websites': 'wordpress',
-        'SkyScan - Modern Weather App': 'skyscan' 
-
+        'SkyScan - Modern Weather App': 'skyscan'
     };
     return folderMap[title] || null;
 }
 
-// Helper function to get icon based on project category
 function getProjectIcon(category) {
     const icons = {
         'Full-Stack System': 'fa-laptop-code',
@@ -250,14 +296,10 @@ function getProjectIcon(category) {
     return icons[category] || 'fa-folder-open';
 }
 
-// ============================================
-// Project Modal Functions - IMPROVED IMAGE HANDLING
-// ============================================
 function openProjectModal(project) {
     const modal = document.getElementById('projectModal');
     if (!modal) return;
 
-    // Set modal content
     document.getElementById('modalTitle').textContent = project.title;
     document.getElementById('modalCategory').textContent = project.category;
     document.getElementById('modalPurpose').textContent = project.purpose;
@@ -266,7 +308,6 @@ function openProjectModal(project) {
     document.getElementById('modalBeneficiaries').textContent = project.beneficiaries;
     document.getElementById('modalGitHub').href = project.github;
 
-    // Set features
     const featuresList = document.getElementById('modalFeatures');
     featuresList.innerHTML = '';
     project.features.forEach(feature => {
@@ -275,7 +316,6 @@ function openProjectModal(project) {
         featuresList.appendChild(li);
     });
 
-    // Set technologies
     const techContainer = document.getElementById('modalTech');
     techContainer.innerHTML = '';
     project.technologies.forEach(tech => {
@@ -285,89 +325,33 @@ function openProjectModal(project) {
         techContainer.appendChild(span);
     });
 
-    // Get project folder
     const projectFolder = getProjectFolder(project.title);
     const mainImage = document.getElementById('modalMainImage');
-    
-    // Set main image with fallback
+
     if (projectFolder) {
-        // Try to load the first screenshot
-        let imagePath = `images/projects/${projectFolder}/screenshot1.jpg`;
-        
-        // Special case for projectx which has a .jpeg for screenshot4
-        if (projectFolder === 'projectx') {
-            imagePath = `images/projects/${projectFolder}/screenshot1.jpg`;
-        }
-        
-        mainImage.src = imagePath;
-        mainImage.onerror = function() {
-            // Try different extensions if first fails
-            const extensions = ['.jpg', '.jpeg', '.png'];
-            let tried = 0;
-            
-            const tryNextImage = () => {
-                tried++;
-                if (tried <= extensions.length) {
-                    this.src = `images/projects/${projectFolder}/screenshot1${extensions[tried-1]}`;
-                } else {
-                    // If all fail, show placeholder
-                    this.src = 'https://via.placeholder.com/600x400?text=' + encodeURIComponent(project.title);
-                }
-            };
-            
-            this.onerror = tryNextImage;
-            tryNextImage();
+        mainImage.src = `images/projects/${projectFolder}/screenshot1.jpg`;
+        mainImage.onerror = function () {
+            this.src = `https://via.placeholder.com/600x400?text=${encodeURIComponent(project.title)}`;
+            this.onerror = null;
         };
     } else {
-        mainImage.src = 'https://via.placeholder.com/600x400?text=' + encodeURIComponent(project.title);
+        mainImage.src = `https://via.placeholder.com/600x400?text=${encodeURIComponent(project.title)}`;
     }
     mainImage.alt = project.title;
 
-    // Load thumbnails
     const thumbnails = document.getElementById('modalThumbnails');
     thumbnails.innerHTML = '';
-    
+
     if (projectFolder) {
-        // Get screenshot count based on project
-        const screenshotCount = getScreenshotCount(projectFolder);
-        
-        for (let i = 1; i <= screenshotCount; i++) {
+        const count = getScreenshotCount(projectFolder);
+        for (let i = 1; i <= count; i++) {
+            const imgSrc = `images/projects/${projectFolder}/screenshot${i}.jpg`;
             const thumb = document.createElement('div');
             thumb.className = `modal-thumb ${i === 1 ? 'active' : ''}`;
-            
-            // Determine file extension
-            let extension = '.jpg';
-            if (projectFolder === 'projectx' && i === 4) {
-                extension = '.jpeg';
-            }
-            
-            const imgSrc = `images/projects/${projectFolder}/screenshot${i}${extension}`;
-            
-            thumb.innerHTML = `<img src="${imgSrc}" 
-                                     alt="Screen ${i}" 
-                                     loading="lazy"
-                                     onerror="this.onerror=null; this.src='https://via.placeholder.com/100x80?text=Screen+${i}';">`;
-            
-            thumb.addEventListener('click', function() {
-                const imgSrc = this.querySelector('img').src;
-                mainImage.src = imgSrc;
-                document.querySelectorAll('.modal-thumb').forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
-            });
-            
-            thumbnails.appendChild(thumb);
-        }
-    }
-    
-    // If no thumbnails were added, show placeholders
-    if (thumbnails.children.length === 0) {
-        for (let i = 1; i <= 3; i++) {
-            const thumb = document.createElement('div');
-            thumb.className = `modal-thumb ${i === 1 ? 'active' : ''}`;
-            thumb.innerHTML = `<img src="https://via.placeholder.com/100x80?text=Screen+${i}" alt="Screen ${i}">`;
-            thumb.addEventListener('click', function() {
-                const imgSrc = this.querySelector('img').src.replace('100x80', '600x400');
-                mainImage.src = imgSrc;
+            thumb.innerHTML = `<img src="${imgSrc}" alt="Screen ${i}" loading="lazy"
+                onerror="this.src='https://via.placeholder.com/100x80?text=Screen+${i}'">`;
+            thumb.addEventListener('click', function () {
+                mainImage.src = this.querySelector('img').src;
                 document.querySelectorAll('.modal-thumb').forEach(t => t.classList.remove('active'));
                 this.classList.add('active');
             });
@@ -379,37 +363,41 @@ function openProjectModal(project) {
     document.body.style.overflow = 'hidden';
 }
 
-// Helper function to get number of screenshots per project
 function getScreenshotCount(folder) {
-    const counts = {
-        'leavepulse': 3,
-        'library': 3,
-        'lottery': 4,
-        'projectx': 3,
-        'semosafm': 3,
-        'wordpress': 1
-    };
+    const counts = { leavepulse: 3, library: 3, lottery: 4, projectx: 3, semosafm: 3, wordpress: 1, skyscan: 3 };
     return counts[folder] || 3;
 }
 
 function closeProjectModal() {
     document.getElementById('projectModal').classList.remove('active');
-    document.body.style.overflow = 'auto';
+    document.body.style.overflow = '';
 }
 
 // ============================================
-// Load Experience
+// EXPERIENCE
 // ============================================
 function loadExperience() {
     const expTabs = document.getElementById('expTabs');
     const expDetails = document.getElementById('expDetails');
-    
     if (!expTabs || !expDetails) return;
 
     const experiences = [
         {
+            company: 'Kinetix Engineering Solutions',
+            role: 'Software Developer Intern',
+            period: 'Mar – May 2026',
+            fullPeriod: 'March 2026 – May 2026',
+            description: 'Developed and deployed production features using ASP.NET Core MVC and Flutter within an Agile/Scrum sprint cycle, contributing to system architecture decisions and code reviews.',
+            bullets: [
+                'Implemented secure authentication flows including JWT token management, input validation, and role-based access control (RBAC)',
+                'Collaborated in sprint planning, API integration projects, and technical documentation covering configurations, troubleshooting, and deployment notes',
+                'Diagnosed and resolved software defects and system issues across development and staging environments',
+                'Contributed to system architecture decisions and participated in code reviews to maintain code quality'
+            ]
+        },
+        {
             company: 'Martelo Digital',
-            role: 'Standard Developer',
+            role: 'Web Developer',
             period: '2023 – 2025',
             fullPeriod: 'January 2023 – January 2025',
             description: 'Developed and maintained business websites using WordPress, creating responsive layouts and custom themes for diverse client requirements.',
@@ -423,8 +411,8 @@ function loadExperience() {
         {
             company: 'CUT University',
             role: 'Lab Assistant',
-            period: 'Mar – Oct 2024',
-            fullPeriod: 'March 2024 – October 2024',
+            period: 'Mar – Nov 2025',
+            fullPeriod: 'March 2025 – November 2025',
             description: 'Assisted students with debugging and completing programming projects, supporting practical learning in C# and ASP.NET Core.',
             bullets: [
                 'Guided 50+ students through complex coding challenges and debugging sessions',
@@ -436,7 +424,7 @@ function loadExperience() {
         {
             company: 'Self-Employed',
             role: 'Freelance Developer',
-            period: 'Freelance',
+            period: 'Ongoing',
             fullPeriod: 'Freelance (Ongoing)',
             description: 'Created custom WordPress solutions for small businesses, focusing on responsive design, performance, and user experience.',
             bullets: [
@@ -448,14 +436,13 @@ function loadExperience() {
         }
     ];
 
-    // Clear existing content
     expTabs.innerHTML = '';
     expDetails.innerHTML = '';
 
-    // Create tabs
     experiences.forEach((exp, index) => {
-        const tab = document.createElement('div');
+        const tab = document.createElement('button');
         tab.className = `exp-tab ${index === 0 ? 'active' : ''}`;
+        tab.setAttribute('type', 'button');
         tab.setAttribute('onclick', `showExp('exp${index + 1}', this)`);
         tab.innerHTML = `
             <h4>${exp.company}</h4>
@@ -463,10 +450,7 @@ function loadExperience() {
             <span>${exp.period}</span>
         `;
         expTabs.appendChild(tab);
-    });
 
-    // Create details
-    experiences.forEach((exp, index) => {
         const detail = document.createElement('div');
         detail.className = `exp-detail ${index === 0 ? 'active' : ''}`;
         detail.id = `exp${index + 1}`;
@@ -479,7 +463,7 @@ function loadExperience() {
             <div class="exp-detail-body">
                 <p>${exp.description}</p>
                 <ul class="exp-bullets">
-                    ${exp.bullets.map(bullet => `<li>${bullet}</li>`).join('')}
+                    ${exp.bullets.map(b => `<li>${b}</li>`).join('')}
                 </ul>
             </div>
         `;
@@ -487,98 +471,151 @@ function loadExperience() {
     });
 }
 
+window.showExp = function (id, tab) {
+    document.querySelectorAll('.exp-detail').forEach(d => d.classList.remove('active'));
+    document.querySelectorAll('.exp-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    tab.classList.add('active');
+};
+
 // ============================================
-// Load Contact Info
+// CERTIFICATIONS
+// ============================================
+function loadCertifications() {
+    const certsGrid = document.getElementById('certsGrid');
+    if (!certsGrid) return;
+
+    const certs = [
+        {
+            icon: 'fa-shield-alt',
+            title: 'Certified in Cybersecurity (CC) – Security Principles',
+            issuer: 'ISC2 · Domain 1',
+            badge: 'ISC2 Certified'
+        },
+        {
+            icon: 'fa-exclamation-triangle',
+            title: 'Incident Response, Business Continuity & Disaster Recovery',
+            issuer: 'ISC2 · Domain 2',
+            badge: 'ISC2 Certified'
+        },
+        {
+            icon: 'fa-lock',
+            title: 'Access Control Concepts',
+            issuer: 'ISC2 · Domain 3',
+            badge: 'ISC2 Certified'
+        },
+        {
+            icon: 'fa-network-wired',
+            title: 'Network Security',
+            issuer: 'ISC2 · Domain 4',
+            badge: 'ISC2 Certified'
+        },
+        {
+            icon: 'fa-server',
+            title: 'Security Operations',
+            issuer: 'ISC2 · Domain 5',
+            badge: 'ISC2 Certified'
+        },
+        {
+            icon: 'fa-user-shield',
+            title: 'ISC2 Candidate',
+            issuer: 'ISC2 · Associate Member',
+            badge: 'Active Member'
+        }
+    ];
+
+    certs.forEach(cert => {
+        const card = document.createElement('div');
+        card.className = 'cert-card reveal';
+        card.innerHTML = `
+            <div class="cert-icon"><i class="fas ${cert.icon}"></i></div>
+            <div class="cert-body">
+                <h4>${cert.title}</h4>
+                <p>${cert.issuer}</p>
+            </div>
+            <span class="cert-badge"><i class="fas fa-check-circle"></i> ${cert.badge}</span>
+        `;
+        certsGrid.appendChild(card);
+    });
+}
+
+// ============================================
+// CONTACT
 // ============================================
 function loadContactInfo() {
     const contactInfo = document.getElementById('contactInfo');
-    if (!contactInfo) return;
-
-    const infoItems = [
-        { icon: 'fa-map-marker-alt', label: 'Location', value: 'Bloemfontein, South Africa' },
-        { icon: 'fa-envelope', label: 'Email', value: 'princepromisesemosa@gmail.com' },
-        { icon: 'fa-phone', label: 'Phone', value: '+27 60 834 1700' }
-    ];
-
-    contactInfo.innerHTML = infoItems.map(item => `
-        <div class="contact-info-item">
-            <div class="contact-info-icon"><i class="fas ${item.icon}"></i></div>
-            <div>
-                <h4>${item.label}</h4>
-                <p>${item.value}</p>
+    if (contactInfo) {
+        const infoItems = [
+            { icon: 'fa-map-marker-alt', label: 'Location', value: 'Bloemfontein, South Africa' },
+            { icon: 'fa-envelope', label: 'Email', value: 'princepromisesemosa@gmail.com' },
+            { icon: 'fa-phone', label: 'Phone', value: '+27 60 834 1700' }
+        ];
+        contactInfo.innerHTML = infoItems.map(item => `
+            <div class="contact-info-item">
+                <div class="contact-info-icon"><i class="fas ${item.icon}"></i></div>
+                <div>
+                    <h4>${item.label}</h4>
+                    <p>${item.value}</p>
+                </div>
             </div>
-        </div>
-    `).join('');
+        `).join('');
+    }
 
     const contactSocials = document.getElementById('contactSocials');
     if (contactSocials) {
         const socials = [
-            { url: 'https://github.com/princepro-cr', icon: 'fa-github' },
-            { url: 'https://linkedin.com/in/prince-promise-semosa-abb88832b', icon: 'fa-linkedin-in' },
-            { url: 'mailto:princepromisesemosa@gmail.com', icon: 'fa-envelope' }
+            { url: 'https://github.com/princepro-cr', icon: 'fa-github', fab: true },
+            { url: 'https://linkedin.com/in/prince-promise-semosa-abb88832b', icon: 'fa-linkedin-in', fab: true },
+            { url: 'mailto:princepromisesemosa@gmail.com', icon: 'fa-envelope', fab: false }
         ];
-
-        contactSocials.innerHTML = socials.map(social => `
-            <a href="${social.url}" class="contact-social-btn" target="_blank">
-                <i class="fab ${social.icon}"></i>
+        contactSocials.innerHTML = socials.map(s => `
+            <a href="${s.url}" class="contact-social-btn" target="_blank">
+                <i class="${s.fab ? 'fab' : 'fas'} ${s.icon}"></i>
             </a>
         `).join('');
     }
 }
 
 // ============================================
-// Setup Event Listeners
+// EVENT LISTENERS
 // ============================================
 function setupEventListeners() {
-    // Scroll effects
     window.addEventListener('scroll', handleScroll);
 
-    // Smooth scroll for nav links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', handleSmoothScroll);
+        anchor.addEventListener('click', function (e) {
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                e.preventDefault();
+                closeMenu();
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
     });
 
-    // Contact form
     const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', handleContactSubmit);
-    }
+    if (contactForm) contactForm.addEventListener('submit', handleContactSubmit);
 
-    // Modal close buttons
-    const modalClose = document.getElementById('modalClose');
-    const modalCloseBtn = document.querySelector('.modal-close-btn');
-    const modalOverlay = document.querySelector('.modal-overlay');
+    ['modalClose', 'modalCloseBtn'].forEach(id => {
+        const el = document.getElementById(id) || document.querySelector('.modal-close-btn');
+        if (el) el.addEventListener('click', closeProjectModal);
+    });
+    document.getElementById('modalClose')?.addEventListener('click', closeProjectModal);
+    document.querySelector('.modal-close-btn')?.addEventListener('click', closeProjectModal);
+    document.querySelector('.modal-overlay')?.addEventListener('click', closeProjectModal);
 
-    if (modalClose) {
-        modalClose.addEventListener('click', closeProjectModal);
-    }
-    if (modalCloseBtn) {
-        modalCloseBtn.addEventListener('click', closeProjectModal);
-    }
-    if (modalOverlay) {
-        modalOverlay.addEventListener('click', closeProjectModal);
-    }
+    backToTop?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-    // Back to top
-    if (backToTop) {
-        backToTop.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    }
-
-    // Escape key for modal
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', e => {
         if (e.key === 'Escape') {
+            closeMenu();
             const modal = document.getElementById('projectModal');
-            if (modal && modal.classList.contains('active')) {
-                closeProjectModal();
-            }
+            if (modal?.classList.contains('active')) closeProjectModal();
         }
     });
 }
 
 function handleScroll() {
-    // Navbar scroll effect
     if (window.scrollY > 60) {
         navbar?.classList.add('scrolled');
         backToTop?.classList.add('show');
@@ -587,106 +624,58 @@ function handleScroll() {
         backToTop?.classList.remove('show');
     }
 
-    // Active nav links
+    // Active nav highlight
     const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-links a');
-
     let current = '';
     sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        if (window.scrollY >= sectionTop - 120) {
-            current = section.getAttribute('id');
-        }
+        if (window.scrollY >= section.offsetTop - 130) current = section.getAttribute('id');
     });
 
-    navLinks.forEach(link => {
+    document.querySelectorAll('.nav-links a').forEach(link => {
         link.style.color = '';
-        if (link.getAttribute('href') === '#' + current) {
-            link.style.color = 'var(--blue-vivid)';
-        }
+        if (link.getAttribute('href') === '#' + current) link.style.color = 'var(--blue-vivid)';
     });
-}
-
-function handleSmoothScroll(e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-        target.scrollIntoView({ behavior: 'smooth' });
-    }
 }
 
 function handleContactSubmit(e) {
     e.preventDefault();
     const btn = this.querySelector('.btn-submit');
-    const originalText = btn.innerHTML;
-    
+    const orig = btn.innerHTML;
     btn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
     btn.style.background = '#22C55E';
-    
-    setTimeout(() => {
-        btn.innerHTML = originalText;
-        btn.style.background = '';
-        this.reset();
-    }, 3000);
-
-    // Here you would typically send the form data to a server
-    console.log('Form submitted:', {
-        name: document.getElementById('contactName').value,
-        email: document.getElementById('contactEmail').value,
-        subject: document.getElementById('contactSubject').value,
-        message: document.getElementById('contactMessage').value
-    });
+    setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; this.reset(); }, 3000);
 }
 
 // ============================================
-// Experience Tabs Function (Global)
-// ============================================
-window.showExp = function(id, tab) {
-    document.querySelectorAll('.exp-detail').forEach(d => d.classList.remove('active'));
-    document.querySelectorAll('.exp-tab').forEach(t => t.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-    tab.classList.add('active');
-};
-
-// ============================================
-// Scroll Animations
+// SCROLL ANIMATIONS
 // ============================================
 function setupScrollAnimations() {
     const reveals = document.querySelectorAll('.reveal');
-    const barObserver = new IntersectionObserver((entries) => {
+    const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                setTimeout(() => {
-                    entry.target.classList.add('visible');
-                }, 100);
+                setTimeout(() => entry.target.classList.add('visible'), 100);
             }
         });
     }, { threshold: 0.1 });
 
-    reveals.forEach(el => barObserver.observe(el));
+    reveals.forEach(el => revealObserver.observe(el));
 
-    // Skill bars animation
     const skillBars = document.querySelectorAll('.skill-bar-fill');
-    const skillObserver = new IntersectionObserver((entries) => {
+    const barObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const width = entry.target.dataset.width;
-                entry.target.style.width = (parseFloat(width) * 100) + '%';
+                entry.target.style.width = (parseFloat(entry.target.dataset.width) * 100) + '%';
             }
         });
     }, { threshold: 0.5 });
 
-    skillBars.forEach(bar => {
-        bar.style.width = '0%';
-        skillObserver.observe(bar);
-    });
+    skillBars.forEach(bar => { bar.style.width = '0%'; barObserver.observe(bar); });
 }
 
 // ============================================
-// Update Copyright Year
+// YEAR
 // ============================================
 function updateCopyrightYear() {
-    if (currentYearSpan) {
-        currentYearSpan.textContent = new Date().getFullYear();
-    }
+    if (currentYearSpan) currentYearSpan.textContent = new Date().getFullYear();
 }

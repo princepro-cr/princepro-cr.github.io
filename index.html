@@ -5,41 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Promise Semosa — Portfolio</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <div class="grain-overlay" aria-hidden="true"></div>
-
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
+<!-- ========== NAVBAR ========== -->
 <nav id="navbar">
     <a href="#home" class="nav-logo">
         <span class="logo-ps">PS</span>
         <span class="logo-sep"></span>
         <span class="logo-name">Promise Semosa</span>
     </a>
-    <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#projects">Featured Work</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#contact" class="nav-cta">
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#home" onclick="closeMenu()">Home</a></li>
+        <li><a href="#projects" onclick="closeMenu()">Featured Work</a></li>
+        <li><a href="#experience" onclick="closeMenu()">Experience</a></li>
+        <li><a href="#about" onclick="closeMenu()">About</a></li>
+        <li><a href="#skills" onclick="closeMenu()">Skills</a></li>
+        <li><a href="#certifications" onclick="closeMenu()">Certifications</a></li>
+        <li><a href="#contact" class="nav-cta" onclick="closeMenu()">
             <span>Let's Talk</span>
             <i class="fas fa-arrow-right"></i>
         </a></li>
     </ul>
-    <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu" onclick="toggleMenu()">
         <span></span><span></span><span></span>
     </button>
 </nav>
+<div class="nav-mobile-overlay" id="navOverlay" onclick="closeMenu()"></div>
 
+<!-- ========== HERO ========== -->
 <section id="home">
     <div class="hero-bg" aria-hidden="true">
         <div class="hero-grid-lines"></div>
@@ -92,41 +93,51 @@
             </div>
         </div>
 
+        <!-- Profile visual with orbital tech logos -->
         <div class="hero-visual">
-            <div class="profile-frame">
-                <div class="profile-ring profile-ring-1"></div>
-                <div class="profile-ring profile-ring-2"></div>
-
+            <div class="orbit-system">
+                <!-- Profile photo card center -->
                 <div class="profile-card-main">
                     <div class="profile-img-placeholder" id="profileContainer">
                         <img src="images/profile.jpg" alt="Promise Semosa"
-                             onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-user\'></i><span>Promise Semosa</span>'">
+                             onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-user\'></i><span>PS</span>'">
                     </div>
                 </div>
 
-                <div class="tech-badge badge-1">
-                    <i class="fas fa-mobile-alt"></i> Flutter
+                <!-- Orbital rings -->
+                <div class="orbit orbit-1">
+                    <div class="orbit-item" style="--angle:0deg">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C#" title="C#">
+                    </div>
+                    <div class="orbit-item" style="--angle:90deg">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter" title="Flutter">
+                    </div>
+                    <div class="orbit-item" style="--angle:180deg">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg" alt="ASP.NET" title="ASP.NET Core">
+                    </div>
+                    <div class="orbit-item" style="--angle:270deg">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg" alt="SQL Server" title="SQL Server">
+                    </div>
                 </div>
-                <div class="tech-badge badge-2">
-                    <i class="fas fa-code"></i> ASP.NET Core
+
+                <div class="orbit orbit-2">
+                    <div class="orbit-item" style="--angle:45deg">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" title="TypeScript">
+                    </div>
+                    <div class="orbit-item" style="--angle:117deg">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React Native" title="React Native">
+                    </div>
+                    <div class="orbit-item" style="--angle:189deg">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase" title="Firebase">
+                    </div>
+                    <div class="orbit-item" style="--angle:261deg">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" title="JavaScript">
+                    </div>
+                    <div class="orbit-item" style="--angle:333deg">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" title="PostgreSQL">
+                    </div>
                 </div>
-                <div class="tech-badge badge-3">
-                    <i class="fas fa-shield-alt"></i> ISC2 Cybersecurity
-                </div>
-                <div class="tech-badge badge-4">
-                    <i class="fas fa-database"></i> SQL / PostgreSQL
-                </div>
-                <div class="tech-badge badge-5">
-                    <i class="fas fa-database"></i> React Native
-                </div>
-                <div class="tech-badge badge-5">
-                    <i class="fas fa-database"></i> TypeScript
             </div>
-            
-            <div class="tech-badge badge-5">
-                <i class="fas fa-database"></i> JavaScript
-            </div>
-            
         </div>
     </div>
 
@@ -136,6 +147,7 @@
     </div>
 </section>
 
+<!-- ========== PROJECTS ========== -->
 <section id="projects">
     <div class="container">
         <div class="reveal">
@@ -143,11 +155,11 @@
             <h2 class="section-title">Featured Projects</h2>
             <p class="section-desc">Click any project tile to view its core architecture breakdown, challenge, and impact metrics.</p>
         </div>
-
         <div class="projects-grid" id="projectsGrid"></div>
     </div>
 </section>
 
+<!-- Project Modal -->
 <div class="project-modal" id="projectModal">
     <div class="modal-overlay"></div>
     <div class="modal-container">
@@ -195,21 +207,21 @@
             </div>
             <div class="modal-footer">
                 <a href="#" id="modalGitHub" class="btn-primary" target="_blank">
-                    <i class="fab fa-github"></i> View Architecture on GitHub
+                    <i class="fab fa-github"></i> View on GitHub
                 </a>
-                <button class="modal-close-btn btn-ghost" type="button">Close Window</button>
+                <button class="modal-close-btn btn-ghost" type="button">Close</button>
             </div>
         </div>
     </div>
 </div>
 
+<!-- ========== EXPERIENCE ========== -->
 <section id="experience">
     <div class="container">
         <div class="reveal">
             <span class="section-tag">Track Record</span>
             <h2 class="section-title">Work Experience</h2>
         </div>
-
         <div class="exp-layout">
             <div class="exp-tabs" id="expTabs"></div>
             <div class="exp-details" id="expDetails"></div>
@@ -217,17 +229,17 @@
     </div>
 </section>
 
+<!-- ========== ABOUT ========== -->
 <section id="about">
     <div class="container">
         <div class="reveal">
             <span class="section-tag">Behind the Code</span>
             <h2 class="section-title">About Me</h2>
         </div>
-
         <div class="about-layout">
             <div class="about-text reveal">
                 <p>I am an <strong>Information Technology Graduate</strong> with hands-on experience building and deploying full-stack web solutions and mobile systems designed to address real-world business challenges.</p>
-                <p>My methodology emphasizes security-aware execution—implementing solid authorization models, schema validations, and role-based access directly into source structures rather than treating them as afterthoughts.</p>
+                <p>My methodology emphasizes security-aware execution—implementing solid authorization models, JWT authentication, schema validations, and role-based access control directly into source structures rather than treating them as afterthoughts.</p>
 
                 <div class="about-highlights" id="aboutHighlights"></div>
 
@@ -242,7 +254,6 @@
 
             <div class="about-right reveal">
                 <div class="about-numbers" id="aboutNumbers"></div>
-
                 <div class="about-goals">
                     <h3>Focus Objectives</h3>
                     <p>Seeking technical engineering environments dedicated to writing testable, production-ready codebases within mature Agile/Scrum continuous integration environments.</p>
@@ -253,15 +264,14 @@
     </div>
 </section>
 
+<!-- ========== SKILLS ========== -->
 <section id="skills">
     <div class="container">
         <div class="reveal" style="text-align: center;">
             <span class="section-tag">Tooling Ecosystem</span>
             <h2 class="section-title">Technical Skills</h2>
         </div>
-
         <div class="skills-layout" id="skillsGrid"></div>
-
         <div class="proficiency-card reveal" id="proficiencySection">
             <h3>Core Proficiency Focus</h3>
             <div class="skill-bar-list" id="skillBars"></div>
@@ -269,6 +279,19 @@
     </div>
 </section>
 
+<!-- ========== CERTIFICATIONS ========== -->
+<section id="certifications">
+    <div class="container">
+        <div class="reveal" style="text-align:center;">
+            <span class="section-tag">Credentials</span>
+            <h2 class="section-title">Certifications</h2>
+            <p class="section-desc" style="margin: 0 auto;">Validated expertise through industry-recognised certification programmes.</p>
+        </div>
+        <div class="certs-grid" id="certsGrid"></div>
+    </div>
+</section>
+
+<!-- ========== CONTACT ========== -->
 <section id="contact">
     <div class="container">
         <div class="reveal">
@@ -276,13 +299,11 @@
             <h2 class="section-title">Let's Work Together</h2>
             <p class="section-desc">Let's discuss how I can add immediate value to your project or developer squad.</p>
         </div>
-
         <div class="contact-layout">
             <div class="reveal">
                 <div class="contact-info-stack" id="contactInfo"></div>
                 <div class="contact-socials" id="contactSocials"></div>
             </div>
-
             <div class="contact-form reveal">
                 <form id="contactForm">
                     <div class="form-row">
@@ -328,38 +349,5 @@
 
 <script src="js/projects-data.js"></script>
 <script src="js/main.js"></script>
-
-<script>
-    // Custom cursor core logic
-    const dot = document.getElementById('cursorDot');
-    const ring = document.getElementById('cursorRing');
-    let ringX = 0, ringY = 0, dotX = 0, dotY = 0;
-    
-    document.addEventListener('mousemove', e => {
-        dotX = e.clientX; dotY = e.clientY;
-        dot.style.transform = `translate(${dotX}px, ${dotY}px)`;
-    });
-    
-    function animateRing() {
-        ringX += (dotX - ringX) * 0.12;
-        ringY += (dotY - ringY) * 0.12;
-        ring.style.transform = `translate(${ringX}px, ${ringY}px)`;
-        requestAnimationFrame(animateRing);
-    }
-    animateRing();
-    
-    // Dynamic event delegation handler for injected data components
-    document.addEventListener('mouseenter', e => {
-        if (e.target.closest && e.target.closest('a, button, .project-card, .exp-tab, .skill-chip')) {
-            ring.classList.add('hovering');
-        }
-    }, true);
-    
-    document.addEventListener('mouseleave', e => {
-        if (e.target.closest && e.target.closest('a, button, .project-card, .exp-tab, .skill-chip')) {
-            ring.classList.remove('hovering');
-        }
-    }, true);
-</script>
 </body>
 </html>
