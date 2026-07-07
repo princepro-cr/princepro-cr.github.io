@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Promise Semosa — Portfolio</title>
+    <title>Promise Semosa — Software Developer</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -18,19 +18,19 @@
 <!-- ========== NAVBAR ========== -->
 <nav id="navbar">
     <a href="#home" class="nav-logo">
-        <span class="logo-ps">PS</span>
+        <span>PS</span>
         <span class="logo-sep"></span>
-        <span class="logo-name">Promise Semosa</span>
+        <span class="logo-name"><span class="status-dot"></span>SYS: ONLINE</span>
     </a>
     <ul class="nav-links" id="navLinks">
         <li><a href="#home" onclick="closeMenu()">Home</a></li>
-        <li><a href="#projects" onclick="closeMenu()">Featured Work</a></li>
-        <li><a href="#experience" onclick="closeMenu()">Experience</a></li>
-        <li><a href="#about" onclick="closeMenu()">About</a></li>
-        <li><a href="#skills" onclick="closeMenu()">Skills</a></li>
-        <li><a href="#certifications" onclick="closeMenu()">Certifications</a></li>
+        <li><a href="#projects" onclick="closeMenu()">Case Files</a></li>
+        <li><a href="#experience" onclick="closeMenu()">Log</a></li>
+        <li><a href="#about" onclick="closeMenu()">Profile</a></li>
+        <li><a href="#skills" onclick="closeMenu()">Capabilities</a></li>
+        <li><a href="#certifications" onclick="closeMenu()">Clearance</a></li>
         <li><a href="#contact" class="nav-cta" onclick="closeMenu()">
-            <span>Let's Talk</span>
+            <span>Request Access</span>
             <i class="fas fa-arrow-right"></i>
         </a></li>
     </ul>
@@ -43,35 +43,35 @@
 <!-- ========== HERO ========== -->
 <section id="home">
     <div class="hero-bg" aria-hidden="true">
-        <div class="hero-grid-lines"></div>
-        <div class="hero-glow glow-1"></div>
-        <div class="hero-glow glow-2"></div>
-        <div class="hero-glow glow-3"></div>
+        <div class="hero-grid"></div>
+        <div class="hero-scanline"></div>
     </div>
 
     <div class="hero-inner">
         <div class="hero-content">
             <div class="hero-badge">
                 <div class="badge-dot"></div>
-                <span>Available for Roles &amp; Freelance</span>
+                <span>AVAILABLE FOR HIRE</span>
             </div>
 
             <h1 class="hero-title">
-                <span class="title-line title-line-1">Hi, I'm</span>
-                <span class="title-line title-line-2 name-accent">Promise<br>Semosa</span>
+                <span class="title-line">Promise</span>
+                <span class="title-line title-accent">Semosa</span>
             </h1>
 
             <div class="hero-role">
-                <span class="role-highlight">Junior Software Developer</span>
+                <span class="role-tag">Jr. Software Developer</span>
+                <span class="role-sep">/</span>
+                <span>Full-Stack &amp; Mobile Systems</span>
             </div>
 
             <p class="hero-desc">
-                Building secure, production-ready full-stack web and mobile applications. Specializing in C#, ASP.NET Core, and Flutter with a security-first engineering mindset.
+                Building secure, production-ready web and mobile applications with C#, ASP.NET Core, and Flutter — engineered with a security-first mindset backed by an ISC2 Certified in Cybersecurity credential.
             </p>
 
             <div class="hero-actions">
                 <a href="#projects" class="btn-primary">
-                    <span>Explore My Work</span>
+                    <span>PROJECTS</span>
                     <i class="fas fa-arrow-right"></i>
                 </a>
                 <a href="files/Promise_Semosa_CV.pdf" class="btn-ghost" download>
@@ -93,57 +93,31 @@
             </div>
         </div>
 
-        <!-- Profile visual with orbital tech logos -->
+        <!-- Clearance badge — signature visual -->
         <div class="hero-visual">
-            <div class="orbit-system">
-                <!-- Profile photo card center -->
-                <div class="profile-card-main">
-                    <div class="profile-img-placeholder" id="profileContainer">
-                        <img src="images/profile.jpg" alt="Promise Semosa"
-                             onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-user\'></i><span>PS</span>'">
-                    </div>
+            <div class="clearance-badge">
+                <div class="badge-punch"></div>
+                <div class="badge-photo" id="profileContainer">
+                    <img src="images/profile.jpg" alt="Promise Semosa"
+                         onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-user-shield\'></i><span>NO IMAGE ON FILE</span>'">
                 </div>
+                <span class="badge-label">OPERATOR PROFILE</span>
+                <h3 class="badge-name">P. Semosa</h3>
+                <span class="badge-role">Full-Stack / Mobile Development</span>
 
-                <!-- Orbital rings -->
-                <div class="orbit orbit-1">
-                    <div class="orbit-item" style="--angle:0deg">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C#" title="C#">
-                    </div>
-                    <div class="orbit-item" style="--angle:90deg">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter" title="Flutter">
-                    </div>
-                    <div class="orbit-item" style="--angle:180deg">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg" alt="ASP.NET" title="ASP.NET Core">
-                    </div>
-                    <div class="orbit-item" style="--angle:270deg">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg" alt="SQL Server" title="SQL Server">
-                    </div>
-                </div>
+                <div class="badge-row"><span>Status</span><strong class="status-active">Active</strong></div>
+                <div class="badge-row"><span>Clearance</span><strong>ISC2 · CC</strong></div>
+                <div class="badge-row"><span>Base</span><strong>Johannesburg, ZA</strong></div>
 
-                <div class="orbit orbit-2">
-                    <div class="orbit-item" style="--angle:45deg">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" title="TypeScript">
-                    </div>
-                    <div class="orbit-item" style="--angle:117deg">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React Native" title="React Native">
-                    </div>
-                    <div class="orbit-item" style="--angle:189deg">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase" title="Firebase">
-                    </div>
-                    <div class="orbit-item" style="--angle:261deg">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" title="JavaScript">
-                    </div>
-                    <div class="orbit-item" style="--angle:333deg">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" title="PostgreSQL">
-                    </div>
-                </div>
+                <div class="badge-barcode" aria-hidden="true"></div>
+                <div class="badge-stamp">GRANTED</div>
             </div>
         </div>
     </div>
 
     <div class="hero-scroll-hint">
         <div class="scroll-line"></div>
-        <span>Scroll</span>
+        <span>SCROLL</span>
     </div>
 </section>
 
@@ -151,9 +125,9 @@
 <section id="projects">
     <div class="container">
         <div class="reveal">
-            <span class="section-tag">Proof of Concept</span>
-            <h2 class="section-title">Featured Projects</h2>
-            <p class="section-desc">Click any project tile to view its core architecture breakdown, challenge, and impact metrics.</p>
+            <span class="section-eyebrow">// Deployed Systems</span>
+            <h2 class="section-title">PROJECTS</h2>
+            <p class="section-desc">Open a file to review its full technical record — architecture, problem, and measured impact.</p>
         </div>
         <div class="projects-grid" id="projectsGrid"></div>
     </div>
@@ -219,13 +193,11 @@
 <section id="experience">
     <div class="container">
         <div class="reveal">
-            <span class="section-tag">Track Record</span>
-            <h2 class="section-title">Work Experience</h2>
+            <span class="section-eyebrow">// Track Record</span>
+            <h2 class="section-title">Deployment Log</h2>
+            <p class="section-desc">A chronological record of roles, most recent first.</p>
         </div>
-        <div class="exp-layout">
-            <div class="exp-tabs" id="expTabs"></div>
-            <div class="exp-details" id="expDetails"></div>
-        </div>
+        <div class="deployment-log" id="expDetails"></div>
     </div>
 </section>
 
@@ -233,13 +205,13 @@
 <section id="about">
     <div class="container">
         <div class="reveal">
-            <span class="section-tag">Behind the Code</span>
-            <h2 class="section-title">About Me</h2>
+            <span class="section-eyebrow">// Behind the Code</span>
+            <h2 class="section-title">Operator Profile</h2>
         </div>
         <div class="about-layout">
             <div class="about-text reveal">
-                <p>I am an <strong>Information Technology Graduate</strong> with hands-on experience building and deploying full-stack web solutions and mobile systems designed to address real-world business challenges.</p>
-                <p>My methodology emphasizes security-aware execution—implementing solid authorization models, JWT authentication, schema validations, and role-based access control directly into source structures rather than treating them as afterthoughts.</p>
+                <p>I'm an <strong>Information Technology graduate</strong> with hands-on experience building and deploying full-stack web solutions and mobile systems designed for real business problems.</p>
+                <p>My approach is security-aware by default — authentication, JWT, schema validation, and role-based access control get designed into the system from the start, not bolted on afterward.</p>
 
                 <div class="about-highlights" id="aboutHighlights"></div>
 
@@ -247,7 +219,7 @@
                     <div class="edu-icon"><i class="fas fa-graduation-cap"></i></div>
                     <div>
                         <h4>Central University of Technology</h4>
-                        <p>Information Technology Graduate · Bloemfontein, South Africa</p>
+                        <p>IT Graduate (Cum Laude) · Bloemfontein, South Africa</p>
                     </div>
                 </div>
             </div>
@@ -256,7 +228,7 @@
                 <div class="about-numbers" id="aboutNumbers"></div>
                 <div class="about-goals">
                     <h3>Focus Objectives</h3>
-                    <p>Seeking technical engineering environments dedicated to writing testable, production-ready codebases within mature Agile/Scrum continuous integration environments.</p>
+                    <p>Looking for engineering teams that value testable, production-ready code inside a mature Agile/Scrum cycle — with room to grow toward application security and DevSecOps.</p>
                     <div class="about-tags" id="aboutTags"></div>
                 </div>
             </div>
@@ -268,8 +240,8 @@
 <section id="skills">
     <div class="container">
         <div class="reveal" style="text-align: center;">
-            <span class="section-tag">Tooling Ecosystem</span>
-            <h2 class="section-title">Technical Skills</h2>
+            <span class="section-eyebrow">// Tooling Ecosystem</span>
+            <h2 class="section-title">Capability Manifest</h2>
         </div>
         <div class="skills-layout" id="skillsGrid"></div>
         <div class="proficiency-card reveal" id="proficiencySection">
@@ -283,9 +255,9 @@
 <section id="certifications">
     <div class="container">
         <div class="reveal" style="text-align:center;">
-            <span class="section-tag">Credentials</span>
-            <h2 class="section-title">Certifications</h2>
-            <p class="section-desc" style="margin: 0 auto;">Validated expertise through industry-recognised certification programmes.</p>
+            <span class="section-eyebrow">// Credentials</span>
+            <h2 class="section-title">Clearance Domains</h2>
+            <p class="section-desc" style="margin: 0 auto;">ISC2 Certified in Cybersecurity — five domains, granted.</p>
         </div>
         <div class="certs-grid" id="certsGrid"></div>
     </div>
@@ -295,9 +267,9 @@
 <section id="contact">
     <div class="container">
         <div class="reveal">
-            <span class="section-tag">Initialization</span>
-            <h2 class="section-title">Let's Work Together</h2>
-            <p class="section-desc">Let's discuss how I can add immediate value to your project or developer squad.</p>
+            <span class="section-eyebrow">// Initialization</span>
+            <h2 class="section-title">Request Access</h2>
+            <p class="section-desc">Tell me about the role or project, and I'll get back to you directly.</p>
         </div>
         <div class="contact-layout">
             <div class="reveal">

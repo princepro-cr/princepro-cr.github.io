@@ -50,7 +50,6 @@ function closeMenu() {
     document.body.style.overflow = '';
 }
 
-// Expose for onclick attributes
 window.toggleMenu = toggleMenu;
 window.closeMenu = closeMenu;
 
@@ -79,13 +78,13 @@ function initCustomCursor() {
     animateRing();
 
     document.addEventListener('mouseenter', e => {
-        if (e.target.closest && e.target.closest('a, button, .project-card, .exp-tab, .skill-chip, .cert-card')) {
+        if (e.target.closest && e.target.closest('a, button, .case-card, .skill-chip, .cert-card')) {
             ring.classList.add('hovering');
         }
     }, true);
 
     document.addEventListener('mouseleave', e => {
-        if (e.target.closest && e.target.closest('a, button, .project-card, .exp-tab, .skill-chip, .cert-card')) {
+        if (e.target.closest && e.target.closest('a, button, .case-card, .skill-chip, .cert-card')) {
             ring.classList.remove('hovering');
         }
     }, true);
@@ -99,9 +98,9 @@ function loadAboutContent() {
     if (highlightsContainer) {
         const highlights = [
             { icon: 'fa-shield-alt', title: 'Security-First', desc: 'JWT, RBAC & input validation built-in' },
-            { icon: 'fa-lightbulb', title: 'Problem Solver', desc: 'Turning challenges into opportunities' },
+            { icon: 'fa-lightbulb', title: 'Systems Thinker', desc: 'Breaks problems into shippable pieces' },
             { icon: 'fa-users', title: 'Team Player', desc: 'Agile/Scrum collaborator' },
-            { icon: 'fa-rocket', title: 'Fast Learner', desc: 'Adapting to new technologies quickly' }
+            { icon: 'fa-rocket', title: 'Fast Learner', desc: 'Adapts quickly across stacks' }
         ];
 
         highlights.forEach(item => {
@@ -222,7 +221,7 @@ function loadSkills() {
 }
 
 // ============================================
-// PROJECTS
+// PROJECTS — case files
 // ============================================
 function loadProjects() {
     const projectsGrid = document.getElementById('projectsGrid');
@@ -232,16 +231,17 @@ function loadProjects() {
 
     if (typeof projectsData === 'undefined') return;
 
-    projectsData.forEach((project) => {
+    projectsData.forEach((project, index) => {
         const card = document.createElement('div');
-        card.className = 'project-card reveal';
+        card.className = 'case-card reveal';
 
         const projectFolder = getProjectFolder(project.title);
         const imagePath = projectFolder ? `images/projects/${projectFolder}/screenshot1.jpg` : null;
         const techDisplay = project.technologies.slice(0, 3);
+        const fileId = `CF-${String(index + 1).padStart(2, '0')}`;
 
         card.innerHTML = `
-            <div class="project-thumb">
+            <div class="case-thumb">
                 ${imagePath ?
                     `<img src="${imagePath}" 
                           alt="${project.title}"
@@ -251,18 +251,19 @@ function loadProjects() {
                     `<i class="fas ${getProjectIcon(project.category)}"></i>`
                 }
             </div>
-            <div class="project-body">
-                <div class="project-tags">
-                    <span class="project-tag">${project.category}</span>
+            <div class="case-body">
+                <div class="case-top">
+                    <span class="case-id">${fileId}</span>
+                    <span class="case-tag">${project.category}</span>
                 </div>
                 <h3>${project.title}</h3>
                 <p>${project.purpose.substring(0, 110)}${project.purpose.length > 110 ? '...' : ''}</p>
-                <div class="project-footer">
-                    <div class="project-tech">
+                <div class="case-footer">
+                    <div class="case-tech">
                         ${techDisplay.map(tech => `<span class="tech-dot" title="${tech}"></span>`).join('')}
                     </div>
-                    <a href="${project.github}" class="project-link" target="_blank" onclick="event.stopPropagation()">
-                        View Code <i class="fas fa-arrow-right"></i>
+                    <a href="${project.github}" class="case-link" target="_blank" onclick="event.stopPropagation()">
+                        Open File <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
             </div>
@@ -282,8 +283,8 @@ function getProjectFolder(title) {
         'Lottery Mobile Application': 'lottery',
         'WordPress Business Websites': 'wordpress',
         'SkyScan - Modern Weather App': 'skyscan',
-        'Zone-Runner - 2D Platformer Game': 'Zonerunner'
-
+        'Zone-Runner - 2D Platformer Game': 'Zonerunner',
+       'CampusStay - Student Accommodation Platform': 'campustay'
     };
     return folderMap[title] || null;
 }
@@ -293,7 +294,8 @@ function getProjectIcon(category) {
         'Full-Stack System': 'fa-laptop-code',
         'Web Application': 'fa-globe',
         'Mobile Application': 'fa-mobile-alt',
-        'Web Development': 'fa-wordpress'
+        'Web Development': 'fa-wordpress',
+        'Game Development': 'fa-gamepad'
     };
     return icons[category] || 'fa-folder-open';
 }
@@ -333,11 +335,11 @@ function openProjectModal(project) {
     if (projectFolder) {
         mainImage.src = `images/projects/${projectFolder}/screenshot1.jpg`;
         mainImage.onerror = function () {
-            this.src = `https://via.placeholder.com/600x400?text=${encodeURIComponent(project.title)}`;
+            this.src = `https://via.placeholder.com/600x400/141B24/8894A3?text=${encodeURIComponent(project.title)}`;
             this.onerror = null;
         };
     } else {
-        mainImage.src = `https://via.placeholder.com/600x400?text=${encodeURIComponent(project.title)}`;
+        mainImage.src = `https://via.placeholder.com/600x400/141B24/8894A3?text=${encodeURIComponent(project.title)}`;
     }
     mainImage.alt = project.title;
 
@@ -351,7 +353,7 @@ function openProjectModal(project) {
             const thumb = document.createElement('div');
             thumb.className = `modal-thumb ${i === 1 ? 'active' : ''}`;
             thumb.innerHTML = `<img src="${imgSrc}" alt="Screen ${i}" loading="lazy"
-                onerror="this.src='https://via.placeholder.com/100x80?text=Screen+${i}'">`;
+                onerror="this.src='https://via.placeholder.com/100x80/141B24/8894A3?text=Screen+${i}'">`;
             thumb.addEventListener('click', function () {
                 mainImage.src = this.querySelector('img').src;
                 document.querySelectorAll('.modal-thumb').forEach(t => t.classList.remove('active'));
@@ -376,18 +378,16 @@ function closeProjectModal() {
 }
 
 // ============================================
-// EXPERIENCE
+// EXPERIENCE — deployment log (timeline)
 // ============================================
 function loadExperience() {
-    const expTabs = document.getElementById('expTabs');
     const expDetails = document.getElementById('expDetails');
-    if (!expTabs || !expDetails) return;
+    if (!expDetails) return;
 
     const experiences = [
         {
             company: 'Kinetix Engineering Solutions',
             role: 'Software Developer Intern',
-            period: 'Mar – May 2026',
             fullPeriod: 'March 2026 – May 2026',
             description: 'Developed and deployed production features using ASP.NET Core MVC and Flutter within an Agile/Scrum sprint cycle, contributing to system architecture decisions and code reviews.',
             bullets: [
@@ -400,7 +400,6 @@ function loadExperience() {
         {
             company: 'Martelo Digital',
             role: 'Web Developer',
-            period: '2023 – 2025',
             fullPeriod: 'January 2023 – January 2025',
             description: 'Developed and maintained business websites using WordPress, creating responsive layouts and custom themes for diverse client requirements.',
             bullets: [
@@ -413,7 +412,6 @@ function loadExperience() {
         {
             company: 'CUT University',
             role: 'Lab Assistant',
-            period: 'Mar – Nov 2025',
             fullPeriod: 'March 2025 – November 2025',
             description: 'Assisted students with debugging and completing programming projects, supporting practical learning in C# and ASP.NET Core.',
             bullets: [
@@ -426,7 +424,6 @@ function loadExperience() {
         {
             company: 'Self-Employed',
             role: 'Freelance Developer',
-            period: 'Ongoing',
             fullPeriod: 'Freelance (Ongoing)',
             description: 'Created custom WordPress solutions for small businesses, focusing on responsive design, performance, and user experience.',
             bullets: [
@@ -438,104 +435,57 @@ function loadExperience() {
         }
     ];
 
-    expTabs.innerHTML = '';
     expDetails.innerHTML = '';
 
     experiences.forEach((exp, index) => {
-        const tab = document.createElement('button');
-        tab.className = `exp-tab ${index === 0 ? 'active' : ''}`;
-        tab.setAttribute('type', 'button');
-        tab.setAttribute('onclick', `showExp('exp${index + 1}', this)`);
-        tab.innerHTML = `
-            <h4>${exp.company}</h4>
-            <p>${exp.role}</p>
-            <span>${exp.period}</span>
-        `;
-        expTabs.appendChild(tab);
-
-        const detail = document.createElement('div');
-        detail.className = `exp-detail ${index === 0 ? 'active' : ''}`;
-        detail.id = `exp${index + 1}`;
-        detail.innerHTML = `
-            <div class="exp-detail-header">
+        const entry = document.createElement('div');
+        entry.className = 'log-entry reveal';
+        entry.innerHTML = `
+            <div class="log-marker"><span class="log-index">${String(index + 1).padStart(2, '0')}</span></div>
+            <div class="log-content">
+                <div class="log-meta">
+                    <span class="log-time"><i class="fas fa-clock"></i> ${exp.fullPeriod}</span>
+                    ${index === 0 ? '<span class="log-tag log-tag-active">Most Recent</span>' : ''}
+                </div>
                 <h3>${exp.role}</h3>
-                <p class="company">${exp.company}</p>
-                <p class="period">${exp.fullPeriod}</p>
-            </div>
-            <div class="exp-detail-body">
-                <p>${exp.description}</p>
-                <ul class="exp-bullets">
+                <p class="log-company">${exp.company}</p>
+                <p class="log-desc">${exp.description}</p>
+                <ul class="log-bullets">
                     ${exp.bullets.map(b => `<li>${b}</li>`).join('')}
                 </ul>
             </div>
         `;
-        expDetails.appendChild(detail);
+        expDetails.appendChild(entry);
     });
 }
 
-window.showExp = function (id, tab) {
-    document.querySelectorAll('.exp-detail').forEach(d => d.classList.remove('active'));
-    document.querySelectorAll('.exp-tab').forEach(t => t.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-    tab.classList.add('active');
-};
-
 // ============================================
-// CERTIFICATIONS
+// CERTIFICATIONS — clearance domains
 // ============================================
 function loadCertifications() {
     const certsGrid = document.getElementById('certsGrid');
     if (!certsGrid) return;
 
     const certs = [
-        {
-            icon: 'fa-shield-alt',
-            title: 'Certified in Cybersecurity (CC) – Security Principles',
-            issuer: 'ISC2 · Domain 1',
-            badge: 'ISC2 Certified'
-        },
-        {
-            icon: 'fa-exclamation-triangle',
-            title: 'Incident Response, Business Continuity & Disaster Recovery',
-            issuer: 'ISC2 · Domain 2',
-            badge: 'ISC2 Certified'
-        },
-        {
-            icon: 'fa-lock',
-            title: 'Access Control Concepts',
-            issuer: 'ISC2 · Domain 3',
-            badge: 'ISC2 Certified'
-        },
-        {
-            icon: 'fa-network-wired',
-            title: 'Network Security',
-            issuer: 'ISC2 · Domain 4',
-            badge: 'ISC2 Certified'
-        },
-        {
-            icon: 'fa-server',
-            title: 'Security Operations',
-            issuer: 'ISC2 · Domain 5',
-            badge: 'ISC2 Certified'
-        },
-        {
-            icon: 'fa-user-shield',
-            title: 'ISC2 Candidate',
-            issuer: 'ISC2 · Associate Member',
-            badge: 'Active Member'
-        }
+        { code: 'D1', icon: 'fa-shield-alt', title: 'Certified in Cybersecurity (CC) – Security Principles', issuer: 'ISC2 · Domain 1', badge: 'Granted' },
+        { code: 'D2', icon: 'fa-exclamation-triangle', title: 'Incident Response, Business Continuity & Disaster Recovery', issuer: 'ISC2 · Domain 2', badge: 'Granted' },
+        { code: 'D3', icon: 'fa-lock', title: 'Access Control Concepts', issuer: 'ISC2 · Domain 3', badge: 'Granted' },
+        { code: 'D4', icon: 'fa-network-wired', title: 'Network Security', issuer: 'ISC2 · Domain 4', badge: 'Granted' },
+        { code: 'D5', icon: 'fa-server', title: 'Security Operations', issuer: 'ISC2 · Domain 5', badge: 'Granted' },
+        { code: 'AM', icon: 'fa-user-shield', title: 'ISC2 Candidate', issuer: 'ISC2 · Associate Member', badge: 'Active' }
     ];
 
     certs.forEach(cert => {
         const card = document.createElement('div');
         card.className = 'cert-card reveal';
         card.innerHTML = `
+            <span class="cert-code" aria-hidden="true">${cert.code}</span>
             <div class="cert-icon"><i class="fas ${cert.icon}"></i></div>
             <div class="cert-body">
                 <h4>${cert.title}</h4>
                 <p>${cert.issuer}</p>
             </div>
-            <span class="cert-badge"><i class="fas fa-check-circle"></i> ${cert.badge}</span>
+            <span class="cert-badge"><i class="fas fa-check"></i> ${cert.badge}</span>
         `;
         certsGrid.appendChild(card);
     });
@@ -548,7 +498,7 @@ function loadContactInfo() {
     const contactInfo = document.getElementById('contactInfo');
     if (contactInfo) {
         const infoItems = [
-            { icon: 'fa-map-marker-alt', label: 'Location', value: 'Bloemfontein, South Africa' },
+            { icon: 'fa-map-marker-alt', label: 'Location', value: 'Johannesburg, South Africa' },
             { icon: 'fa-envelope', label: 'Email', value: 'princepromisesemosa@gmail.com' },
             { icon: 'fa-phone', label: 'Phone', value: '+27 60 834 1700' }
         ];
@@ -598,10 +548,6 @@ function setupEventListeners() {
     const contactForm = document.getElementById('contactForm');
     if (contactForm) contactForm.addEventListener('submit', handleContactSubmit);
 
-    ['modalClose', 'modalCloseBtn'].forEach(id => {
-        const el = document.getElementById(id) || document.querySelector('.modal-close-btn');
-        if (el) el.addEventListener('click', closeProjectModal);
-    });
     document.getElementById('modalClose')?.addEventListener('click', closeProjectModal);
     document.querySelector('.modal-close-btn')?.addEventListener('click', closeProjectModal);
     document.querySelector('.modal-overlay')?.addEventListener('click', closeProjectModal);
@@ -626,7 +572,6 @@ function handleScroll() {
         backToTop?.classList.remove('show');
     }
 
-    // Active nav highlight
     const sections = document.querySelectorAll('section[id]');
     let current = '';
     sections.forEach(section => {
@@ -635,7 +580,7 @@ function handleScroll() {
 
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.style.color = '';
-        if (link.getAttribute('href') === '#' + current) link.style.color = 'var(--blue-vivid)';
+        if (link.getAttribute('href') === '#' + current) link.style.color = 'var(--amber)';
     });
 }
 
@@ -644,7 +589,7 @@ function handleContactSubmit(e) {
     const btn = this.querySelector('.btn-submit');
     const orig = btn.innerHTML;
     btn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
-    btn.style.background = '#22C55E';
+    btn.style.background = '#34D399';
     setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; this.reset(); }, 3000);
 }
 

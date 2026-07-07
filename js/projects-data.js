@@ -1,12 +1,4 @@
-
 // ============================================
-// Update Copyright Year
-// ============================================
-function updateCopyrightYear() {
-    if (currentYearSpan) {
-        currentYearSpan.textContent = new Date().getFullYear();
-    }
-}// ============================================
 // PROJECT DATA - All project information
 // ============================================
 
@@ -190,5 +182,36 @@ const projectsData = [
             'Visual Studio'
         ],
         github: 'https://github.com/princepro-cr/Unity_2D-Fundamentals'
+    },
+    {
+        id: 9,
+        title: 'CampusStay - Student Accommodation Platform',
+        category: 'Full-Stack Development',
+        purpose: 'To create a full-stack platform connecting students with accommodation providers, streamlining the search, listing, and booking process for student housing.',
+        problem: '[Need your input: what specific problem does CampusStay solve for students/providers?]',
+        impact: '[Need your input: what stage is this at — MVP complete? core features working?]',
+        beneficiaries: 'Students seeking accommodation and property providers/landlords managing listings.',
+        features: [
+            'JWT authentication and role-based access',
+            'RESTful API backend built with ASP.NET Core Web API',
+            'Cross-platform mobile app for students (React Native/Expo)',
+            'Web-based provider portal for managing listings (ASP.NET Core MVC)',
+            'Search and filter for accommodation listings',
+            'Messaging system for student-to-provider inquiries',
+            'Profile settings management',
+            'Password reset functionality',
+            'Cloud-hosted relational database (Supabase/PostgreSQL)'
+        ],
+        technologies: [
+            'ASP.NET Core Web API',
+            'ASP.NET Core MVC',
+            'React Native',
+            'Expo',
+            'C#',
+            'JWT',
+            'Supabase',
+            'PostgreSQL'
+        ],
+        github: 'Available upon request or private repository'
     }
 ];
