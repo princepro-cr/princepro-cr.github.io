@@ -1,3 +1,12 @@
+export interface Skill {
+  name: string;
+}
+
+export interface TechCategory {
+  category: string;
+  skills: Skill[];
+}
+
 export interface Project {
   id: number;
   title: string;
@@ -35,4 +44,5 @@ export interface ProfileData {
   portfolioWebsite?: string;
   cvLink: string;
   certificates: Certificate[];
+  techStack?: TechCategory[];
 }

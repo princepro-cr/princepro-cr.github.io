@@ -73,6 +73,7 @@ export default function Home() {
           <div className="flex gap-8 text-sm font-semibold text-zinc-600">
             <a href="#hero" className="hover:text-zinc-950 transition">About</a>
             <a href="#projects" className="hover:text-zinc-950 transition">Projects</a>
+            <a href="#tech-stack" className="hover:text-zinc-950 transition">Tech Stack</a>
             <a href="#certificates" className="hover:text-zinc-950 transition">Certificates</a>
           </div>
         </div>
@@ -193,6 +194,40 @@ export default function Home() {
             ))}
           </div>
         </section>
+
+        {/* TECH STACK SECTION */}
+        {profileData.techStack && profileData.techStack.length > 0 && (
+          <section id="tech-stack" className="space-y-8">
+            <div>
+              <h2 className="text-3xl font-black text-zinc-950 tracking-tight">Skills & Technical Expertise</h2>
+              <p className="text-zinc-500 text-sm mt-1">Core technologies, frameworks, infrastructure, and tools I build with</p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              {profileData.techStack.map((categoryGroup, index) => (
+                <div 
+                  key={index} 
+                  className="p-6 rounded-3xl bg-zinc-50 border border-zinc-200/80 space-y-4 shadow-sm"
+                >
+                  <h3 className="font-extrabold text-zinc-950 text-lg border-b border-zinc-200/80 pb-3">
+                    {categoryGroup.category}
+                  </h3>
+                  
+                  <div className="flex flex-wrap gap-2">
+                    {categoryGroup.skills.map((skill, skillIdx) => (
+                      <span 
+                        key={skillIdx}
+                        className="text-xs sm:text-sm bg-white border border-zinc-200/90 text-zinc-800 font-medium px-3.5 py-1.5 rounded-xl shadow-2xs hover:border-lime-400/80 transition"
+                      >
+                        {skill.name}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* CERTIFICATES SECTION */}
         <section id="certificates" className="space-y-6">

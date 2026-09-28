@@ -15,13 +15,64 @@ export const profileData: ProfileData = {
     {
       title: "Microsoft Certified: Azure Fundamentals (AZ-900)",
       issuer: "Microsoft",
-       icon: "☁️"
+      icon: "☁️"
     },
     {
       title: "ISC2 Certified in Cybersecurity (CC)",
       issuer: "ISC2",
       date: "2026",
       icon: "🛡️"
+    }
+  ],
+  techStack: [
+    {
+      category: "Languages & Frameworks",
+      skills: [
+        { name: "C#" },
+        { name: ".NET / ASP.NET Core" },
+        { name: "Blazor" },
+        { name: "Node.js" },
+        { name: "Flutter & Dart" },
+        { name: "React Native" },
+        { name: "Next.js" },
+        { name: "TypeScript / JavaScript" },
+        { name: "Laravel / PHP" },
+        { name: "WordPress" },
+        { name: "HTML5 / CSS3" }
+      ]
+    },
+    {
+      category: "Databases & Backend APIs",
+      skills: [
+        { name: "ASP.NET Web API" },
+        { name: "SQL & SQL Server" },
+        { name: "PostgreSQL" },
+        { name: "MongoDB" },
+        { name: "Firebase" },
+        { name: "Supabase" },
+        { name: "RESTful APIs" }
+      ]
+    },
+    {
+      category: "Cloud, Infrastructure & Admin",
+      skills: [
+        { name: "Microsoft Azure" },
+        { name: "Windows Server" },
+        { name: "Active Directory" },
+        { name: "Hyper-V & Virtualization" },
+        { name: "DNS & DHCP" },
+        { name: "Network Configuration" }
+      ]
+    },
+    {
+      category: "Security & Practices",
+      skills: [
+        { name: "JWT Authentication" },
+        { name: "Role-Based Access Control (RBAC)" },
+        { name: "Cybersecurity Fundamentals" },
+        { name: "Agile / Scrum" },
+        { name: "Testing, Debugging & Deployment" }
+      ]
     }
   ]
 };
