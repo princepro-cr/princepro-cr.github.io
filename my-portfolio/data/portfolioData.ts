@@ -15,8 +15,7 @@ export const profileData: ProfileData = {
     {
       title: "Microsoft Certified: Azure Fundamentals (AZ-900)",
       issuer: "Microsoft",
-      date: "2026",
-      icon: "☁️"
+       icon: "☁️"
     },
     {
       title: "ISC2 Certified in Cybersecurity (CC)",

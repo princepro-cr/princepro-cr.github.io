@@ -13,6 +13,14 @@ export interface Project {
   galleryImages: string[];
 }
 
+export interface Certificate {
+  title: string;
+  issuer: string;
+  date?: string;
+  details?: string;
+  icon: string;
+}
+
 export interface ProfileData {
   name: string;
   title: string;
@@ -21,13 +29,10 @@ export interface ProfileData {
   heroImage: string;
   location: string;
   email: string;
+  phone?: string;
   github: string;
   linkedin: string;
+  portfolioWebsite?: string;
   cvLink: string;
-  certificates: {
-    title: string;
-    issuer: string;
-    date: string;
-    icon: string;
-  }[];
+  certificates: Certificate[];
 }

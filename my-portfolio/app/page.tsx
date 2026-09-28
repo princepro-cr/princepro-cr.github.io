@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { profileData, projectsData } from '@/data/portfolioData';
 import { Project } from '@/types/portfolio';
 
-// Dynamic TypeScript Interactive Header Component
 function InteractiveHeader({ name }: { name: string }) {
   const [displayedText, setDisplayedText] = useState('');
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -34,7 +33,6 @@ function InteractiveHeader({ name }: { name: string }) {
       onMouseMove={handleMouseMove}
       className="relative overflow-hidden rounded-2xl p-2 group transition-all"
     >
-      {/* Subtle cursor glow behind text */}
       <div 
         className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition duration-300"
         style={{
@@ -66,34 +64,31 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white text-zinc-900 font-sans selection:bg-lime-400 selection:text-zinc-950">
       
-      {/* Sticky Navigation Header */}
-      <nav className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-zinc-100">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      {/* WIDER & BORDERLESS STICKY NAVIGATION HEADER */}
+      <nav className="sticky top-0 z-40 bg-white/90 backdrop-blur-md w-full border-none border-0">
+        <div className="w-full max-w-full px-8 md:px-12 py-5 flex justify-between items-center">
           <span className="text-xl font-black text-zinc-900 tracking-tight">
             {profileData.name}
           </span>
-          <div className="flex gap-6 text-sm font-semibold text-zinc-600">
+          <div className="flex gap-8 text-sm font-semibold text-zinc-600">
             <a href="#hero" className="hover:text-zinc-950 transition">About</a>
             <a href="#projects" className="hover:text-zinc-950 transition">Projects</a>
             <a href="#certificates" className="hover:text-zinc-950 transition">Certificates</a>
-            <a href="#cv" className="hover:text-zinc-950 transition">CV</a>
           </div>
         </div>
       </nav>
 
-      <main className="max-w-6xl mx-auto px-6 space-y-16 py-12">
+      <main className="max-w-6xl mx-auto px-6 space-y-20 py-12">
         
-        {/* UNIFIED HERO CANVAS (Header, Text & Portrait Image in One Section Container) */}
+        {/* HERO SECTION */}
         <section id="hero" className="bg-zinc-100/70 border border-zinc-200/80 rounded-3xl p-8 sm:p-12 shadow-sm">
           <div className="grid lg:grid-cols-12 gap-8 items-center">
             
-            {/* Unified Text & Action Column */}
             <div className="lg:col-span-7 space-y-6">
               <p className="text-lg font-medium text-zinc-600 pl-2">
                 Hey there. I'm
               </p>
               
-              {/* Interactive Header Component */}
               <InteractiveHeader name={profileData.name} />
               
               <div className="space-y-3 pl-2">
@@ -123,7 +118,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Portrait Image integrated inside the same card canvas */}
             <div className="lg:col-span-5 flex justify-center">
               <div className="relative w-full aspect-[4/5] max-w-md rounded-2xl overflow-hidden shadow-md bg-zinc-300 border border-zinc-200">
                 <Image 
@@ -142,8 +136,8 @@ export default function Home() {
         {/* FEATURED PROJECTS SECTION */}
         <section id="projects" className="space-y-8">
           <div>
-            <h2 className="text-3xl font-black text-zinc-950 tracking-tight">Featured Work</h2>
-            <p className="text-zinc-500 text-sm mt-1">Tap any card to view screenshots & project overview</p>
+            <h2 className="text-3xl font-black text-zinc-950 tracking-tight">Featured Work ({projectsData.length})</h2>
+            <p className="text-zinc-500 text-sm mt-1">Tap any card to view screenshots, features & project impact</p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -182,6 +176,11 @@ export default function Home() {
                           {tech}
                         </span>
                       ))}
+                      {project.technologies.length > 3 && (
+                        <span className="text-xs bg-zinc-100 text-zinc-500 px-2 py-1 rounded-md font-mono">
+                          +{project.technologies.length - 3}
+                        </span>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -195,43 +194,52 @@ export default function Home() {
           </div>
         </section>
 
-        {/* CERTIFICATES & CV SECTION */}
-        <section id="certificates" className="grid md:grid-cols-12 gap-8">
-          <div className="md:col-span-8 bg-zinc-50 border border-zinc-200/80 p-8 rounded-3xl space-y-6">
-            <h2 className="text-2xl font-black text-zinc-950">Certifications & Badges</h2>
-            <div className="grid sm:grid-cols-2 gap-4">
-              {profileData.certificates.map((cert, index) => (
-                <div key={index} className="p-4 rounded-2xl bg-white border border-zinc-200 flex gap-4 items-center shadow-sm">
-                  <span className="text-3xl">{cert.icon}</span>
-                  <div>
-                    <h3 className="font-bold text-zinc-950 text-sm">{cert.title}</h3>
-                    <p className="text-xs text-zinc-500">{cert.issuer} • {cert.date}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+        {/* CERTIFICATES SECTION */}
+        <section id="certificates" className="space-y-6">
+          <div>
+            <h2 className="text-3xl font-black text-zinc-950 tracking-tight">Certifications</h2>
+            <p className="text-zinc-500 text-sm mt-1">Industry recognized credentials and qualifications</p>
           </div>
 
-          <div id="cv" className="md:col-span-4 bg-zinc-900 text-white p-8 rounded-3xl flex flex-col justify-between shadow-lg">
-            <div>
-              <h2 className="text-2xl font-bold mb-2">Download Resume</h2>
-              <p className="text-sm text-zinc-400 leading-relaxed mb-6">
-                Access my full work experience, academic record, and complete technical skill profile.
-              </p>
-            </div>
-            <a 
-              href={profileData.cvLink} 
-              download 
-              className="w-full bg-lime-400 hover:bg-lime-500 text-zinc-950 font-bold py-3.5 rounded-full text-center transition"
-            >
-              Get PDF Resume
-            </a>
+          <div className="grid sm:grid-cols-2 gap-6">
+            {profileData.certificates.map((cert, index) => (
+              <div 
+                key={index} 
+                className="p-6 rounded-3xl bg-zinc-50 border border-zinc-200/80 flex gap-5 items-start shadow-sm hover:border-lime-400/80 transition"
+              >
+                <span className="text-4xl p-3 bg-white rounded-2xl border border-zinc-200 shadow-sm">{cert.icon}</span>
+                <div className="space-y-1">
+                  <div className="flex justify-between items-center">
+                    <span className="text-xs font-bold text-lime-600 uppercase tracking-wider">{cert.issuer}</span>
+                    {cert.date && <span className="text-xs text-zinc-400 font-mono">{cert.date}</span>}
+                  </div>
+                  <h3 className="font-extrabold text-zinc-950 text-base">{cert.title}</h3>
+                </div>
+              </div>
+            ))}
           </div>
+        </section>
+
+        {/* RESUME BANNER */}
+        <section id="cv" className="bg-zinc-900 text-white p-8 sm:p-12 rounded-3xl flex flex-col md:flex-row justify-between items-center gap-6 shadow-xl">
+          <div className="space-y-2">
+            <h2 className="text-3xl font-black">Looking for a Full-Stack Engineer?</h2>
+            <p className="text-sm text-zinc-400 max-w-xl">
+              Download my CV to learn more about my technical experience, achievements, and educational background.
+            </p>
+          </div>
+          <a 
+            href={profileData.cvLink} 
+            download 
+            className="px-8 py-4 bg-lime-400 hover:bg-lime-500 text-zinc-950 font-bold rounded-full transition whitespace-nowrap"
+          >
+            Download PDF Resume
+          </a>
         </section>
 
       </main>
 
-      {/* PROJECT DETAILS & GALLERY MODAL */}
+      {/* PROJECT DETAILS MODAL */}
       <AnimatePresence>
         {selectedProject && (
           <motion.div 
@@ -272,39 +280,48 @@ export default function Home() {
                     />
                   </div>
 
-                  <div className="flex gap-3 overflow-x-auto pb-2">
-                    {allModalImages.map((img, idx) => (
-                      <button 
-                        key={idx}
-                        onClick={() => setActiveImageIndex(idx)}
-                        className={`relative h-16 w-24 flex-shrink-0 rounded-xl overflow-hidden border-2 transition ${
-                          activeImageIndex === idx ? 'border-lime-500 scale-105' : 'border-zinc-200 opacity-60 hover:opacity-100'
-                        }`}
-                      >
-                        <Image src={img} alt="Thumbnail" fill className="object-cover" />
-                      </button>
-                    ))}
-                  </div>
+                  {allModalImages.length > 1 && (
+                    <div className="flex gap-3 overflow-x-auto pb-2">
+                      {allModalImages.map((img, idx) => (
+                        <button 
+                          key={idx}
+                          onClick={() => setActiveImageIndex(idx)}
+                          className={`relative h-16 w-24 flex-shrink-0 rounded-xl overflow-hidden border-2 transition ${
+                            activeImageIndex === idx ? 'border-lime-500 scale-105' : 'border-zinc-200 opacity-60 hover:opacity-100'
+                          }`}
+                        >
+                          <Image src={img} alt="Thumbnail" fill className="object-cover" />
+                        </button>
+                      ))}
+                    </div>
+                  )}
                 </div>
               )}
 
               <div className="space-y-4 text-sm text-zinc-700">
-                <div className="bg-zinc-50 p-4 rounded-2xl border border-zinc-200">
-                  <h4 className="font-bold text-zinc-950 mb-1">Purpose & Overview</h4>
+                <div className="bg-zinc-50 p-4 rounded-2xl border border-zinc-200 space-y-2">
+                  <h4 className="font-bold text-zinc-950">Purpose & Overview</h4>
                   <p>{selectedProject.purpose}</p>
                 </div>
 
                 {selectedProject.problem && (
-                  <div>
-                    <h4 className="font-bold text-zinc-950 mb-1">Problem Solved</h4>
-                    <p className="text-zinc-600">{selectedProject.problem}</p>
+                  <div className="bg-amber-50/50 border border-amber-200/60 p-4 rounded-2xl">
+                    <h4 className="font-bold text-amber-950 mb-1">Problem Statement</h4>
+                    <p className="text-amber-900/80">{selectedProject.problem}</p>
                   </div>
                 )}
 
                 {selectedProject.impact && (
-                  <div>
-                    <h4 className="font-bold text-zinc-950 mb-1">Impact & Results</h4>
-                    <p className="text-zinc-900 font-medium">{selectedProject.impact}</p>
+                  <div className="bg-lime-50/60 border border-lime-200 p-4 rounded-2xl">
+                    <h4 className="font-bold text-lime-950 mb-1">Key Impact</h4>
+                    <p className="text-lime-900">{selectedProject.impact}</p>
+                  </div>
+                )}
+
+                {selectedProject.beneficiaries && (
+                  <div className="bg-zinc-50 p-4 rounded-2xl border border-zinc-200">
+                    <h4 className="font-bold text-zinc-950 mb-1">Beneficiaries</h4>
+                    <p className="text-zinc-600">{selectedProject.beneficiaries}</p>
                   </div>
                 )}
 
