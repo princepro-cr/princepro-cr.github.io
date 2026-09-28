@@ -31,7 +31,7 @@ function InteractiveHeader({ name }: { name: string }) {
   return (
     <div 
       onMouseMove={handleMouseMove}
-      className="relative overflow-hidden rounded-2xl p-2 group transition-all"
+      className="relative overflow-hidden rounded-2xl p-1 sm:p-2 group transition-all"
     >
       <div 
         className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition duration-300"
@@ -40,9 +40,9 @@ function InteractiveHeader({ name }: { name: string }) {
         }}
       />
       
-      <h1 className="text-5xl sm:text-7xl font-black text-zinc-950 uppercase tracking-tight leading-none min-h-[1.1em]">
+      <h1 className="text-3xl xs:text-4xl sm:text-6xl md:text-7xl font-black text-zinc-950 uppercase tracking-tight leading-tight sm:leading-none min-h-[1.1em] break-words">
         {displayedText}
-        <span className="inline-block w-1.5 h-10 sm:h-14 bg-lime-400 ml-1 animate-pulse align-middle" />
+        <span className="inline-block w-1 sm:w-1.5 h-7 sm:h-12 bg-lime-400 ml-1 animate-pulse align-middle" />
       </h1>
     </div>
   );
@@ -62,15 +62,15 @@ export default function Home() {
     : [];
 
   return (
-    <div className="min-h-screen bg-white text-zinc-900 font-sans selection:bg-lime-400 selection:text-zinc-950">
+    <div className="min-h-screen bg-white text-zinc-900 font-sans selection:bg-lime-400 selection:text-zinc-950 overflow-x-hidden">
       
-      {/* WIDER & BORDERLESS STICKY NAVIGATION HEADER */}
-      <nav className="sticky top-0 z-40 bg-white/90 backdrop-blur-md w-full border-none border-0">
-        <div className="w-full max-w-full px-8 md:px-12 py-5 flex justify-between items-center">
-          <span className="text-xl font-black text-zinc-900 tracking-tight">
+      {/* STICKY RESPONSIVE NAVIGATION HEADER */}
+      <nav className="sticky top-0 z-40 bg-white/90 backdrop-blur-md w-full border-b border-zinc-100">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-8 md:px-12 py-4 flex flex-wrap justify-between items-center gap-4">
+          <span className="text-lg sm:text-xl font-black text-zinc-900 tracking-tight">
             {profileData.name}
           </span>
-          <div className="flex gap-8 text-sm font-semibold text-zinc-600">
+          <div className="flex flex-wrap gap-4 sm:gap-8 text-xs sm:text-sm font-semibold text-zinc-600">
             <a href="#hero" className="hover:text-zinc-950 transition">About</a>
             <a href="#projects" className="hover:text-zinc-950 transition">Projects</a>
             <a href="#tech-stack" className="hover:text-zinc-950 transition">Tech Stack</a>
@@ -79,21 +79,21 @@ export default function Home() {
         </div>
       </nav>
 
-      <main className="max-w-6xl mx-auto px-6 space-y-20 py-12">
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-20 py-8 sm:py-12">
         
         {/* HERO SECTION */}
-        <section id="hero" className="bg-zinc-100/70 border border-zinc-200/80 rounded-3xl p-8 sm:p-12 shadow-sm">
+        <section id="hero" className="bg-zinc-100/70 border border-zinc-200/80 rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-12 shadow-sm">
           <div className="grid lg:grid-cols-12 gap-8 items-center">
             
-            <div className="lg:col-span-7 space-y-6">
-              <p className="text-lg font-medium text-zinc-600 pl-2">
+            <div className="lg:col-span-7 space-y-4 sm:space-y-6">
+              <p className="text-base sm:text-lg font-medium text-zinc-600 sm:pl-2">
                 Hey there. I'm
               </p>
               
               <InteractiveHeader name={profileData.name} />
               
-              <div className="space-y-3 pl-2">
-                <p className="text-xl text-zinc-800 font-bold leading-snug">
+              <div className="space-y-3 sm:pl-2">
+                <p className="text-lg sm:text-xl text-zinc-800 font-bold leading-snug">
                   {profileData.heroTagline}
                 </p>
                 
@@ -102,25 +102,25 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="flex flex-wrap gap-4 pt-2 pl-2">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3 pt-2 sm:pl-2">
                 <a 
                   href="#projects" 
-                  className="px-8 py-3.5 bg-lime-400 hover:bg-lime-500 text-zinc-950 font-bold rounded-full transition shadow-sm hover:shadow-md flex items-center gap-2"
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-3.5 bg-lime-400 hover:bg-lime-500 text-zinc-950 font-bold rounded-full transition shadow-sm hover:shadow-md text-center flex items-center justify-center gap-2 text-sm sm:text-base"
                 >
                   Let's See Work <span className="text-lg">↗</span>
                 </a>
                 <a 
                   href={profileData.cvLink} 
                   download 
-                  className="px-8 py-3.5 bg-white hover:bg-zinc-50 border border-zinc-200 text-zinc-900 font-bold rounded-full transition shadow-sm"
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-3.5 bg-white hover:bg-zinc-50 border border-zinc-200 text-zinc-900 font-bold rounded-full transition shadow-sm text-center text-sm sm:text-base"
                 >
                   Download CV
                 </a>
               </div>
             </div>
 
-            <div className="lg:col-span-5 flex justify-center">
-              <div className="relative w-full aspect-[4/5] max-w-md rounded-2xl overflow-hidden shadow-md bg-zinc-300 border border-zinc-200">
+            <div className="lg:col-span-5 flex justify-center mt-4 lg:mt-0">
+              <div className="relative w-full max-w-xs sm:max-w-md aspect-[4/5] rounded-2xl overflow-hidden shadow-md bg-zinc-300 border border-zinc-200">
                 <Image 
                   src={profileData.heroImage} 
                   alt={profileData.name}
@@ -135,22 +135,22 @@ export default function Home() {
         </section>
 
         {/* FEATURED PROJECTS SECTION */}
-        <section id="projects" className="space-y-8">
+        <section id="projects" className="space-y-6 sm:space-y-8">
           <div>
-            <h2 className="text-3xl font-black text-zinc-950 tracking-tight">Featured Work ({projectsData.length})</h2>
-            <p className="text-zinc-500 text-sm mt-1">Tap any card to view screenshots, features & project impact</p>
+            <h2 className="text-2xl sm:text-3xl font-black text-zinc-950 tracking-tight">Featured Work ({projectsData.length})</h2>
+            <p className="text-zinc-500 text-xs sm:text-sm mt-1">Tap any card to view screenshots, features & project impact</p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {projectsData.map((project, index) => (
               <motion.div 
                 key={project.id}
                 whileHover={{ y: -6 }}
                 onClick={() => openProjectModal(project)}
-                className="bg-zinc-50 border border-zinc-200/80 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl cursor-pointer transition group flex flex-col justify-between"
+                className="bg-zinc-50 border border-zinc-200/80 rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm hover:shadow-xl cursor-pointer transition group flex flex-col justify-between"
               >
                 <div>
-                  <div className="relative h-52 w-full overflow-hidden bg-zinc-200">
+                  <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-zinc-200">
                     <Image 
                       src={project.coverImage} 
                       alt={project.title}
@@ -158,22 +158,22 @@ export default function Home() {
                       priority={index === 0}
                       className="object-cover group-hover:scale-105 transition duration-500"
                     />
-                    <span className="absolute top-4 left-4 bg-white/90 backdrop-blur-md border border-zinc-200 text-zinc-900 text-xs px-3 py-1 rounded-full font-bold">
+                    <span className="absolute top-3 left-3 sm:top-4 sm:left-4 bg-white/90 backdrop-blur-md border border-zinc-200 text-zinc-900 text-xs px-2.5 py-1 rounded-full font-bold">
                       {project.category}
                     </span>
                   </div>
 
-                  <div className="p-6 space-y-3">
-                    <h3 className="text-xl font-bold text-zinc-950 group-hover:text-zinc-700 transition">
+                  <div className="p-5 sm:p-6 space-y-3">
+                    <h3 className="text-lg sm:text-xl font-bold text-zinc-950 group-hover:text-zinc-700 transition">
                       {project.title}
                     </h3>
-                    <p className="text-zinc-600 text-sm line-clamp-2 leading-relaxed">
+                    <p className="text-zinc-600 text-xs sm:text-sm line-clamp-2 leading-relaxed">
                       {project.purpose}
                     </p>
                     
                     <div className="flex flex-wrap gap-1.5 pt-2">
                       {project.technologies.slice(0, 3).map((tech, idx) => (
-                        <span key={idx} className="text-xs bg-zinc-200/80 text-zinc-800 px-2.5 py-1 rounded-md font-mono font-medium">
+                        <span key={idx} className="text-xs bg-zinc-200/80 text-zinc-800 px-2 sm:px-2.5 py-1 rounded-md font-mono font-medium">
                           {tech}
                         </span>
                       ))}
@@ -186,7 +186,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="px-6 py-4 bg-zinc-100/60 border-t border-zinc-200/60 flex justify-between items-center text-xs font-bold text-zinc-900">
+                <div className="px-5 sm:px-6 py-3.5 sm:py-4 bg-zinc-100/60 border-t border-zinc-200/60 flex justify-between items-center text-xs font-bold text-zinc-900">
                   <span>View Details</span>
                   <span className="w-6 h-6 rounded-full bg-lime-400 text-zinc-950 flex items-center justify-center font-bold">↗</span>
                 </div>
@@ -197,19 +197,19 @@ export default function Home() {
 
         {/* TECH STACK SECTION */}
         {profileData.techStack && profileData.techStack.length > 0 && (
-          <section id="tech-stack" className="space-y-8">
+          <section id="tech-stack" className="space-y-6 sm:space-y-8">
             <div>
-              <h2 className="text-3xl font-black text-zinc-950 tracking-tight">Skills & Technical Expertise</h2>
-              <p className="text-zinc-500 text-sm mt-1">Core technologies, frameworks, infrastructure, and tools I build with</p>
+              <h2 className="text-2xl sm:text-3xl font-black text-zinc-950 tracking-tight">Skills & Technical Expertise</h2>
+              <p className="text-zinc-500 text-xs sm:text-sm mt-1">Core technologies, frameworks, infrastructure, and tools I build with</p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
               {profileData.techStack.map((categoryGroup, index) => (
                 <div 
                   key={index} 
-                  className="p-6 rounded-3xl bg-zinc-50 border border-zinc-200/80 space-y-4 shadow-sm"
+                  className="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-zinc-50 border border-zinc-200/80 space-y-4 shadow-sm"
                 >
-                  <h3 className="font-extrabold text-zinc-950 text-lg border-b border-zinc-200/80 pb-3">
+                  <h3 className="font-extrabold text-zinc-950 text-base sm:text-lg border-b border-zinc-200/80 pb-3">
                     {categoryGroup.category}
                   </h3>
                   
@@ -217,7 +217,7 @@ export default function Home() {
                     {categoryGroup.skills.map((skill, skillIdx) => (
                       <span 
                         key={skillIdx}
-                        className="text-xs sm:text-sm bg-white border border-zinc-200/90 text-zinc-800 font-medium px-3.5 py-1.5 rounded-xl shadow-2xs hover:border-lime-400/80 transition"
+                        className="text-xs sm:text-sm bg-white border border-zinc-200/90 text-zinc-800 font-medium px-3 py-1.5 rounded-xl shadow-2xs hover:border-lime-400/80 transition"
                       >
                         {skill.name}
                       </span>
@@ -232,23 +232,23 @@ export default function Home() {
         {/* CERTIFICATES SECTION */}
         <section id="certificates" className="space-y-6">
           <div>
-            <h2 className="text-3xl font-black text-zinc-950 tracking-tight">Certifications</h2>
-            <p className="text-zinc-500 text-sm mt-1">Industry recognized credentials and qualifications</p>
+            <h2 className="text-2xl sm:text-3xl font-black text-zinc-950 tracking-tight">Certifications</h2>
+            <p className="text-zinc-500 text-xs sm:text-sm mt-1">Industry recognized credentials and qualifications</p>
           </div>
 
-          <div className="grid sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             {profileData.certificates.map((cert, index) => (
               <div 
                 key={index} 
-                className="p-6 rounded-3xl bg-zinc-50 border border-zinc-200/80 flex gap-5 items-start shadow-sm hover:border-lime-400/80 transition"
+                className="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-zinc-50 border border-zinc-200/80 flex gap-4 sm:gap-5 items-start shadow-sm hover:border-lime-400/80 transition"
               >
-                <span className="text-4xl p-3 bg-white rounded-2xl border border-zinc-200 shadow-sm">{cert.icon}</span>
-                <div className="space-y-1">
-                  <div className="flex justify-between items-center">
-                    <span className="text-xs font-bold text-lime-600 uppercase tracking-wider">{cert.issuer}</span>
-                    {cert.date && <span className="text-xs text-zinc-400 font-mono">{cert.date}</span>}
+                <span className="text-3xl sm:text-4xl p-2.5 sm:p-3 bg-white rounded-2xl border border-zinc-200 shadow-sm flex-shrink-0">{cert.icon}</span>
+                <div className="space-y-1 min-w-0">
+                  <div className="flex justify-between items-center gap-2">
+                    <span className="text-xs font-bold text-lime-600 uppercase tracking-wider truncate">{cert.issuer}</span>
+                    {cert.date && <span className="text-xs text-zinc-400 font-mono flex-shrink-0">{cert.date}</span>}
                   </div>
-                  <h3 className="font-extrabold text-zinc-950 text-base">{cert.title}</h3>
+                  <h3 className="font-extrabold text-zinc-950 text-sm sm:text-base leading-snug">{cert.title}</h3>
                 </div>
               </div>
             ))}
@@ -256,17 +256,17 @@ export default function Home() {
         </section>
 
         {/* RESUME BANNER */}
-        <section id="cv" className="bg-zinc-900 text-white p-8 sm:p-12 rounded-3xl flex flex-col md:flex-row justify-between items-center gap-6 shadow-xl">
+        <section id="cv" className="bg-zinc-900 text-white p-6 sm:p-10 md:p-12 rounded-2xl sm:rounded-3xl flex flex-col md:flex-row justify-between items-start md:items-center gap-6 shadow-xl">
           <div className="space-y-2">
-            <h2 className="text-3xl font-black">Looking for a Full-Stack Engineer?</h2>
-            <p className="text-sm text-zinc-400 max-w-xl">
+            <h2 className="text-2xl sm:text-3xl font-black">Looking for a Full-Stack Engineer?</h2>
+            <p className="text-xs sm:text-sm text-zinc-400 max-w-xl">
               Download my CV to learn more about my technical experience, achievements, and educational background.
             </p>
           </div>
           <a 
             href={profileData.cvLink} 
             download 
-            className="px-8 py-4 bg-lime-400 hover:bg-lime-500 text-zinc-950 font-bold rounded-full transition whitespace-nowrap"
+            className="w-full md:w-auto px-8 py-3.5 sm:py-4 bg-lime-400 hover:bg-lime-500 text-zinc-950 font-bold rounded-full transition text-center text-sm sm:text-base whitespace-nowrap"
           >
             Download PDF Resume
           </a>
@@ -281,17 +281,17 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-zinc-900/40 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto"
+            className="fixed inset-0 z-50 bg-zinc-900/60 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto"
           >
             <motion.div 
               initial={{ scale: 0.95, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.95, y: 20 }}
-              className="bg-white border border-zinc-200 rounded-3xl max-w-3xl w-full p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto"
+              className="bg-white border border-zinc-200 rounded-2xl sm:rounded-3xl max-w-3xl w-full p-5 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto my-auto"
             >
               <button 
                 onClick={() => setSelectedProject(null)}
-                className="absolute top-6 right-6 h-9 w-9 rounded-full bg-zinc-100 text-zinc-600 hover:text-zinc-950 flex items-center justify-center transition font-bold"
+                className="absolute top-4 right-4 sm:top-6 sm:right-6 h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-zinc-100 text-zinc-600 hover:text-zinc-950 flex items-center justify-center transition font-bold text-sm"
               >
                 ✕
               </button>
@@ -300,13 +300,13 @@ export default function Home() {
                 {selectedProject.category}
               </span>
 
-              <h2 className="text-3xl font-black text-zinc-950 mt-1 mb-6">
+              <h2 className="text-2xl sm:text-3xl font-black text-zinc-950 mt-1 mb-6 pr-8">
                 {selectedProject.title}
               </h2>
 
               {allModalImages.length > 0 && (
-                <div className="space-y-3 mb-8">
-                  <div className="relative h-64 sm:h-80 w-full rounded-2xl overflow-hidden bg-zinc-100 border border-zinc-200">
+                <div className="space-y-3 mb-6 sm:mb-8">
+                  <div className="relative h-48 sm:h-72 md:h-80 w-full rounded-xl sm:rounded-2xl overflow-hidden bg-zinc-100 border border-zinc-200">
                     <Image 
                       src={allModalImages[activeImageIndex]} 
                       alt={`Screenshot ${activeImageIndex + 1}`}
@@ -316,12 +316,12 @@ export default function Home() {
                   </div>
 
                   {allModalImages.length > 1 && (
-                    <div className="flex gap-3 overflow-x-auto pb-2">
+                    <div className="flex gap-2 sm:gap-3 overflow-x-auto pb-2">
                       {allModalImages.map((img, idx) => (
                         <button 
                           key={idx}
                           onClick={() => setActiveImageIndex(idx)}
-                          className={`relative h-16 w-24 flex-shrink-0 rounded-xl overflow-hidden border-2 transition ${
+                          className={`relative h-12 w-20 sm:h-16 sm:w-24 flex-shrink-0 rounded-lg sm:rounded-xl overflow-hidden border-2 transition ${
                             activeImageIndex === idx ? 'border-lime-500 scale-105' : 'border-zinc-200 opacity-60 hover:opacity-100'
                           }`}
                         >
@@ -333,36 +333,36 @@ export default function Home() {
                 </div>
               )}
 
-              <div className="space-y-4 text-sm text-zinc-700">
-                <div className="bg-zinc-50 p-4 rounded-2xl border border-zinc-200 space-y-2">
+              <div className="space-y-4 text-xs sm:text-sm text-zinc-700">
+                <div className="bg-zinc-50 p-4 rounded-xl sm:rounded-2xl border border-zinc-200 space-y-1 sm:space-y-2">
                   <h4 className="font-bold text-zinc-950">Purpose & Overview</h4>
-                  <p>{selectedProject.purpose}</p>
+                  <p className="leading-relaxed">{selectedProject.purpose}</p>
                 </div>
 
                 {selectedProject.problem && (
-                  <div className="bg-amber-50/50 border border-amber-200/60 p-4 rounded-2xl">
+                  <div className="bg-amber-50/50 border border-amber-200/60 p-4 rounded-xl sm:rounded-2xl">
                     <h4 className="font-bold text-amber-950 mb-1">Problem Statement</h4>
-                    <p className="text-amber-900/80">{selectedProject.problem}</p>
+                    <p className="text-amber-900/80 leading-relaxed">{selectedProject.problem}</p>
                   </div>
                 )}
 
                 {selectedProject.impact && (
-                  <div className="bg-lime-50/60 border border-lime-200 p-4 rounded-2xl">
+                  <div className="bg-lime-50/60 border border-lime-200 p-4 rounded-xl sm:rounded-2xl">
                     <h4 className="font-bold text-lime-950 mb-1">Key Impact</h4>
-                    <p className="text-lime-900">{selectedProject.impact}</p>
+                    <p className="text-lime-900 leading-relaxed">{selectedProject.impact}</p>
                   </div>
                 )}
 
                 {selectedProject.beneficiaries && (
-                  <div className="bg-zinc-50 p-4 rounded-2xl border border-zinc-200">
+                  <div className="bg-zinc-50 p-4 rounded-xl sm:rounded-2xl border border-zinc-200">
                     <h4 className="font-bold text-zinc-950 mb-1">Beneficiaries</h4>
-                    <p className="text-zinc-600">{selectedProject.beneficiaries}</p>
+                    <p className="text-zinc-600 leading-relaxed">{selectedProject.beneficiaries}</p>
                   </div>
                 )}
 
                 <div>
                   <h4 className="font-bold text-zinc-950 mb-2">Key Features</h4>
-                  <ul className="grid sm:grid-cols-2 gap-2 list-disc list-inside text-zinc-600">
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 list-disc list-inside text-zinc-600">
                     {selectedProject.features.map((feat, i) => (
                       <li key={i}>{feat}</li>
                     ))}
@@ -371,9 +371,9 @@ export default function Home() {
 
                 <div>
                   <h4 className="font-bold text-zinc-950 mb-2">Technologies Used</h4>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
                     {selectedProject.technologies.map((tech, i) => (
-                      <span key={i} className="text-xs bg-zinc-100 text-zinc-800 px-3 py-1 rounded-lg font-mono font-medium border border-zinc-200">
+                      <span key={i} className="text-xs bg-zinc-100 text-zinc-800 px-2.5 py-1 rounded-lg font-mono font-medium border border-zinc-200">
                         {tech}
                       </span>
                     ))}
@@ -381,18 +381,18 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 pt-6 mt-6 border-t border-zinc-200">
+              <div className="flex flex-col sm:flex-row gap-3 pt-6 mt-6 border-t border-zinc-200">
                 <a 
                   href={selectedProject.github} 
                   target="_blank" 
                   rel="noreferrer"
-                  className="flex-1 bg-lime-400 hover:bg-lime-500 text-zinc-950 font-bold py-3.5 rounded-full text-center transition flex items-center justify-center gap-2"
+                  className="w-full sm:flex-1 bg-lime-400 hover:bg-lime-500 text-zinc-950 font-bold py-3 sm:py-3.5 rounded-full text-center transition flex items-center justify-center gap-2 text-sm"
                 >
                   View GitHub Repository ↗
                 </a>
                 <button 
                   onClick={() => setSelectedProject(null)}
-                  className="px-6 py-3.5 border border-zinc-300 text-zinc-700 hover:bg-zinc-100 rounded-full font-bold transition"
+                  className="w-full sm:w-auto px-6 py-3 sm:py-3.5 border border-zinc-300 text-zinc-700 hover:bg-zinc-100 rounded-full font-bold transition text-sm"
                 >
                   Close
                 </button>
